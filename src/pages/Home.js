@@ -14,7 +14,7 @@ import {
   CardFooter,
   Flex,
   Link as ChakraLink,
-  useColorModeValue,
+  useColorMode,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -78,30 +78,97 @@ const features = [
 ];
 
 function Home() {
-  const cardBg = useColorModeValue('white', 'gray.700');
+  const { colorMode } = useColorMode();
+  const cardBg = colorMode === 'light' ? 'white' : 'brand.tertiary';
+  const textColor = colorMode === 'light' ? 'gray.600' : 'gray.200';
+  const headingColor = colorMode === 'light' ? 'white' : 'white';
+  
+  // Hero section gradient based on color mode
+  const heroGradient = colorMode === 'light'
+    ? 'linear(115deg, #fff6b7, #f6416c)'
+    : 'linear(115deg, #2d3436, #f6416c)';
+
+  // Complementary gradients for other sections
+  const cardHeaderGradient = colorMode === 'light'
+    ? 'linear(to-r, #f6416c, #ff8177)'
+    : 'linear(to-r, #f6416c, #2d3436)';
+
+  const textGradient = colorMode === 'light'
+    ? 'linear(to-r, #fff6b7, #f6416c)'
+    : 'linear(to-r, #fff6b7, #ff8177)';
+
+  const buttonGradient = 'linear(to-r, #f6416c, #ff8177)';
+  const buttonHoverGradient = 'linear(to-r, #ff8177, #f6416c)';
 
   return (
-    <Box as={motion.div} initial="hidden" animate="show" variants={container}>
-      {/* Hero Section */}
+    <Box
+      as={motion.div}
+      initial="hidden"
+      animate="show"
+      variants={container}
+      color={textColor}
+    >
+      {/* Hero Section with Gradient */}
       <MotionBox
-        bg="blue.50"
+        bgGradient={heroGradient}
         py={20}
         mb={10}
         mx={-4}
         variants={item}
+        position="relative"
+        overflow="hidden"
+        _before={{
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          bgGradient: 'linear(to-br, whiteAlpha.200, transparent)',
+          pointerEvents: 'none',
+        }}
       >
-        <Container maxW="container.xl">
-          <VStack spacing={6} align="center" textAlign="center">
-            <Heading size="2xl">Your Academic Research Hub</Heading>
-            <Text fontSize="xl" color="gray.600" maxW="2xl">
-              Discover, discuss, and collaborate on academic papers in a vibrant research community
+        <Container maxW="container.xl" position="relative">
+          <VStack spacing={8} align="center" textAlign="center">
+            <Heading 
+              size="2xl" 
+              color={headingColor}
+              bgGradient={textGradient}
+              bgClip="text"
+              fontSize={{ base: "4xl", md: "6xl" }}
+              fontWeight="bold"
+            >
+              Your Academic Research Hub
+            </Heading>
+            <Text 
+              fontSize={{ base: "xl", md: "2xl" }} 
+              color="white"
+              maxW="2xl"
+              textShadow="0 2px 4px rgba(0,0,0,0.1)"
+            >
+              Discover, discuss, and collaborate on academic papers in a
+              vibrant research community
             </Text>
             <Button
               as={motion.button}
               size="lg"
-              colorScheme="blue"
+              bgGradient={buttonGradient}
+              color="white"
+              px={8}
+              py={6}
+              fontSize="xl"
+              _hover={{
+                bgGradient: buttonHoverGradient,
+                transform: 'translateY(-2px)',
+              }}
+              _active={{
+                bgGradient: buttonGradient,
+                transform: 'translateY(0)',
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              shadow="lg"
+              transition="all 0.2s"
             >
               Get Started
             </Button>
@@ -110,9 +177,16 @@ function Home() {
       </MotionBox>
 
       <Container maxW="container.xl">
-        {/* Popular Topics Section */}
+        {/* Popular Topics Section with Gradient Cards */}
         <MotionBox mb={10} variants={item}>
-          <Heading size="lg" mb={6}>Popular Topics</Heading>
+          <Heading 
+            size="lg" 
+            mb={6} 
+            bgGradient={textGradient}
+            bgClip="text"
+          >
+            Popular Topics
+          </Heading>
           <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
             {topics.map((topic) => (
               <MotionCard
@@ -121,15 +195,40 @@ function Home() {
                 variants={item}
                 whileHover={{ scale: 1.02 }}
                 cursor="pointer"
+                overflow="hidden"
+                position="relative"
+                _before={{
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  bottom: 0,
+                  left: 0,
+                  bgGradient: 'linear(to-br, whiteAlpha.50, transparent)',
+                  pointerEvents: 'none',
+                }}
+                borderWidth="1px"
+                borderColor={colorMode === 'light' ? 'gray.200' : 'whiteAlpha.200'}
+                shadow="lg"
               >
-                <CardHeader>
-                  <Heading size="md">{topic.title}</Heading>
+                <CardHeader 
+                  bgGradient={cardHeaderGradient}
+                >
+                  <Heading size="md" color="white">{topic.title}</Heading>
                 </CardHeader>
                 <CardBody>
-                  <Text color="gray.600">{topic.count} papers</Text>
+                  <Text color={textColor}>{topic.count} papers</Text>
                 </CardBody>
                 <CardFooter>
-                  <Button as={Link} to={`/topic/${topic.id}`} variant="ghost">
+                  <Button
+                    as={Link}
+                    to={`/topic/${topic.id}`}
+                    variant="ghost"
+                    _hover={{
+                      bgGradient: buttonGradient,
+                      color: 'white',
+                    }}
+                  >
                     View Papers
                   </Button>
                 </CardFooter>
@@ -140,13 +239,22 @@ function Home() {
 
         {/* Recent Activities Section */}
         <MotionBox mb={10} variants={item}>
-          <Heading size="lg" mb={6}>Recent Activities</Heading>
+          <Heading size="lg" mb={6} color={headingColor}>
+            Recent Activities
+          </Heading>
           <MotionCard bg={cardBg}>
             <CardHeader>
-              <Heading size="md">Community Updates</Heading>
+              <Heading size="md" color={headingColor}>
+                Community Updates
+              </Heading>
             </CardHeader>
             <CardBody>
-              <VStack spacing={4} align="stretch" maxH="300px" overflowY="auto">
+              <VStack
+                spacing={4}
+                align="stretch"
+                maxH="300px"
+                overflowY="auto"
+              >
                 {recentActivities.map((activity, index) => (
                   <Flex
                     key={activity.id}
@@ -157,11 +265,26 @@ function Home() {
                     custom={index}
                     animate="show"
                   >
-                    <Icon as={FiTrendingUp} boxSize={5} color="blue.500" />
+                    <Icon
+                      as={FiTrendingUp}
+                      boxSize={5}
+                      color="brand.primary"
+                    />
                     <Text>
-                      <Text as="span" fontWeight="semibold">{activity.user}</Text>
-                      {" "}{activity.action}{" "}
-                      <ChakraLink color="blue.500">"{activity.paper}"</ChakraLink>
+                      <Text as="span" fontWeight="semibold">
+                        {activity.user}
+                      </Text>
+                      {' '}
+                      {activity.action}{' '}
+                      <ChakraLink
+                        color={
+                          colorMode === 'light'
+                            ? 'brand.secondary'
+                            : 'brand.accent'
+                        }
+                      >
+                        "{activity.paper}"
+                      </ChakraLink>
                     </Text>
                   </Flex>
                 ))}
@@ -170,9 +293,16 @@ function Home() {
           </MotionCard>
         </MotionBox>
 
-        {/* Features Section */}
+        {/* Features Section with Gradient Icons */}
         <MotionBox mb={10} variants={item}>
-          <Heading size="lg" mb={6}>Why Choose Panvas?</Heading>
+          <Heading 
+            size="lg" 
+            mb={6} 
+            bgGradient={textGradient}
+            bgClip="text"
+          >
+            Why Choose Panvas?
+          </Heading>
           <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={10}>
             {features.map((feature, index) => (
               <VStack
@@ -182,10 +312,23 @@ function Home() {
                 as={motion.div}
                 variants={item}
                 whileHover={{ y: -5 }}
+                p={6}
+                borderRadius="lg"
+                bgGradient={colorMode === 'light'
+                  ? 'linear(to-br, white, gray.50)'
+                  : 'linear(115deg, rgba(246, 65, 108, 0.1), rgba(255, 246, 183, 0.1))'}
+                shadow="lg"
               >
-                <Icon as={feature.icon} boxSize={6} color="blue.500" />
-                <Heading size="md">{feature.title}</Heading>
-                <Text color="gray.600">{feature.description}</Text>
+                <Icon
+                  as={feature.icon}
+                  boxSize={8}
+                  bgGradient={textGradient}
+                  bgClip="text"
+                />
+                <Heading size="md" bgGradient={textGradient} bgClip="text">
+                  {feature.title}
+                </Heading>
+                <Text color={textColor}>{feature.description}</Text>
               </VStack>
             ))}
           </SimpleGrid>
