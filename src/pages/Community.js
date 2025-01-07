@@ -72,7 +72,6 @@ const discussions = [
 
 function Community() {
   const { colorMode } = useColorMode();
-  const cardBg = colorMode === 'light' ? 'white' : 'brand.tertiary';
   const textColor = colorMode === 'light' ? 'gray.600' : 'gray.200';
   const headingColor = colorMode === 'light' ? 'black' : 'white';
 
@@ -110,7 +109,7 @@ function Community() {
           {discussions.map((discussion) => (
             <MotionCard
               key={discussion.id}
-              bg={cardBg}
+              // bg={cardBg}
               variants={item}
               whileHover={{ scale: 1.01 }}
             >

@@ -82,11 +82,6 @@ function Home() {
   const cardBg = colorMode === 'light' ? 'white' : 'brand.tertiary';
   const textColor = colorMode === 'light' ? 'gray.600' : 'gray.200';
   const headingColor = colorMode === 'light' ? 'white' : 'white';
-  
-  // Hero section gradient based on color mode
-  const heroGradient = colorMode === 'light'
-    ? 'linear(115deg, #fff6b7, #f6416c)'
-    : 'linear(115deg, #2d3436, #f6416c)';
 
   // Complementary gradients for other sections
   const cardHeaderGradient = colorMode === 'light'
@@ -94,11 +89,9 @@ function Home() {
     : 'linear(to-r, #f6416c, #2d3436)';
 
   const textGradient = colorMode === 'light'
-    ? 'linear(to-r, #fff6b7, #f6416c)'
+    ? 'linear(to-r, #660e60, #f6416c)'
     : 'linear(to-r, #fff6b7, #ff8177)';
 
-  const buttonGradient = 'linear(to-r, #f6416c, #ff8177)';
-  const buttonHoverGradient = 'linear(to-r, #ff8177, #f6416c)';
 
   return (
     <Box
@@ -110,7 +103,6 @@ function Home() {
     >
       {/* Hero Section with Gradient */}
       <MotionBox
-        bgGradient={heroGradient}
         py={20}
         mb={10}
         mx={-4}
@@ -138,31 +130,30 @@ function Home() {
               fontSize={{ base: "4xl", md: "6xl" }}
               fontWeight="bold"
             >
-              Your Academic Research Hub
+              One-Stop Academic Hub
             </Heading>
             <Text 
               fontSize={{ base: "xl", md: "2xl" }} 
-              color="white"
+              color={textColor}
               maxW="2xl"
               textShadow="0 2px 4px rgba(0,0,0,0.1)"
             >
               Discover, discuss, and collaborate on academic papers in a
-              vibrant research community
+              vibrant research community! <br/>
+              Make Academy Great Again!
             </Text>
             <Button
               as={motion.button}
               size="lg"
-              bgGradient={buttonGradient}
+              bgGradient={cardHeaderGradient}
               color="white"
               px={8}
               py={6}
               fontSize="xl"
               _hover={{
-                bgGradient: buttonHoverGradient,
                 transform: 'translateY(-2px)',
               }}
               _active={{
-                bgGradient: buttonGradient,
                 transform: 'translateY(0)',
               }}
               whileHover={{ scale: 1.05 }}
@@ -170,7 +161,7 @@ function Home() {
               shadow="lg"
               transition="all 0.2s"
             >
-              Get Started
+              Get Started for Free
             </Button>
           </VStack>
         </Container>
@@ -225,8 +216,8 @@ function Home() {
                     to={`/topic/${topic.id}`}
                     variant="ghost"
                     _hover={{
-                      bgGradient: buttonGradient,
-                      color: 'white',
+                      bgGradient: cardHeaderGradient,
+                      color: "white",
                     }}
                   >
                     View Papers
@@ -239,15 +230,14 @@ function Home() {
 
         {/* Recent Activities Section */}
         <MotionBox mb={10} variants={item}>
-          <Heading size="lg" mb={6} color={headingColor}>
+          <Heading             
+            size="lg" 
+            mb={6} 
+            bgGradient={textGradient}
+            bgClip="text">
             Recent Activities
           </Heading>
           <MotionCard bg={cardBg}>
-            <CardHeader>
-              <Heading size="md" color={headingColor}>
-                Community Updates
-              </Heading>
-            </CardHeader>
             <CardBody>
               <VStack
                 spacing={4}
@@ -268,7 +258,7 @@ function Home() {
                     <Icon
                       as={FiTrendingUp}
                       boxSize={5}
-                      color="brand.primary"
+                      color={colorMode === 'light'? '#f6416c': '#fff6b7'}
                     />
                     <Text>
                       <Text as="span" fontWeight="semibold">
@@ -277,11 +267,7 @@ function Home() {
                       {' '}
                       {activity.action}{' '}
                       <ChakraLink
-                        color={
-                          colorMode === 'light'
-                            ? 'brand.secondary'
-                            : 'brand.accent'
-                        }
+                        color={colorMode === 'light'? '#f6416c': '#fff6b7'}
                       >
                         "{activity.paper}"
                       </ChakraLink>

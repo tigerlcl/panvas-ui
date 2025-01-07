@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, Button, Heading, useColorMode, IconButton } from '@chakra-ui/react';
+import { Box, Flex, Button, Heading, useColorMode, IconButton, Image, Stack, Text } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SunIcon, MoonIcon } from '@chakra-ui/icons';
@@ -10,41 +10,46 @@ function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   const navGradient = colorMode === 'light'
-    ? 'linear(to-r, rgba(255, 246, 183, 0.9), rgba(246, 65, 108, 0.9))'
-    : 'linear(to-r, rgba(45, 52, 54, 0.9), rgba(246, 65, 108, 0.9))';
+    ? 'linear(to-r, #fdfcfb, #e2d1c3)'
+    : 'linear(to-r, #12063b, #09555c)';
 
-  const logoGradient = colorMode === 'light'
-    ? 'linear(to-r, #fff6b7, #f6416c)'
-    : 'linear(to-r, #fff6b7, #ff8177)';
+  const buttonGradient = colorMode === 'light'
+    ? 'linear(to-r, #f6416c, #ff8177)'
+    : 'linear(to-r, #f6416c, #2d3436)';
 
   return (
     <Box
       bgGradient={navGradient}
-      px={4}
-      py={2}
-      shadow="lg"
+      px={7}
+      py={5}
       position="sticky"
-      top={0}
-      zIndex={1000}
-      backdropFilter="blur(10px)"
     >
       <Flex justify="space-between" align="center" maxW="container.xl" mx="auto">
         <Heading
           as={RouterLink}
           to="/"
           size="lg"
-          bgGradient={logoGradient}
-          bgClip="text"
-          _hover={{ textDecoration: 'none' }}
         >
-          Panvas
+          <Stack direction="row" align="center" display="flex" alignItems="center">
+            <Image 
+            src="/panvas-logo.svg"
+            alt="Panvas" 
+            height="50px"
+            />
+            <Text 
+            lineHeight="50px" 
+            ml={2}
+            fontSize="3xl"
+            bgGradient={'linear(to-t, #F31C1C, #FA8AAE)'}
+            bgClip="text"
+            >Panvas</Text>
+          </Stack>
         </Heading>
         <Flex gap={4}>
           <MotionButton
             as={RouterLink}
             to="/browse"
             variant="ghost"
-            color="white"
             _hover={{ bg: 'whiteAlpha.200' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -55,7 +60,6 @@ function Navbar() {
             as={RouterLink}
             to="/community"
             variant="ghost"
-            color="white"
             _hover={{ bg: 'whiteAlpha.200' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -65,10 +69,9 @@ function Navbar() {
           <MotionButton
             as={RouterLink}
             to="/signin"
-            bgGradient="linear(to-r, #f6416c, #ff8177)"
+            bgGradient={buttonGradient}
             color="white"
             _hover={{
-              bgGradient: 'linear(to-r, #ff8177, #f6416c)',
               transform: 'translateY(-2px)',
             }}
             whileHover={{ scale: 1.05 }}

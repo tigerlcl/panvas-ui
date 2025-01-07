@@ -64,7 +64,7 @@ const papers = [
 
 function BrowsePapers() {
   const { colorMode } = useColorMode();
-  const cardBg = colorMode === 'light' ? 'white' : 'brand.tertiary';
+  const cardBg = colorMode === 'light' ? 'brand.accent' : 'brand.tertiary';
   const textColor = colorMode === 'light' ? 'gray.600' : 'gray.200';
   const headingColor = colorMode === 'light' ? 'black' : 'white';
 
@@ -114,7 +114,7 @@ function BrowsePapers() {
                 </Text>
                 <HStack mt={4} spacing={2}>
                   {paper.tags.map((tag) => (
-                    <Badge key={tag} colorScheme="blue" bg={'brand.secondary'} color={'white'}>
+                    <Badge key={tag} colorScheme="blue" bg={'#fbe0e0'} color={'white'}>
                       {tag}
                     </Badge>
                   ))}

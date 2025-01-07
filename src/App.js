@@ -20,6 +20,7 @@ function App() {
         gridTemplateRows={{ base: 'auto 1fr', lg: 'auto 1fr' }}
         gridTemplateColumns={{ base: '1fr', lg: '250px 1fr' }}
         flex="1"
+        overflow="hidden"
       >
         <GridItem area="nav">
           <Navbar />
@@ -27,7 +28,11 @@ function App() {
         <GridItem area="side" display={{ base: 'none', lg: 'block' }}>
           <Sidebar />
         </GridItem>
-        <GridItem area="main" p={4} overflowY="auto">
+        <GridItem 
+          area="main" 
+          overflow="hidden"
+          h="100%"
+        >
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/browse" element={<BrowsePapers />} />

@@ -1,18 +1,19 @@
 import React from 'react';
-import { Box, Container, Stack, Text, Link, IconButton } from '@chakra-ui/react';
+import { Box, Container, Stack, Text, Link, IconButton, Image, useColorMode } from '@chakra-ui/react';
 import { FiGithub, FiTwitter, FiLinkedin } from 'react-icons/fi';
 
 function Footer() {
+  const { colorMode } = useColorMode();
+  const bgGradient = colorMode === 'light'
+    ? 'linear(to-r, #fdfcfb, #e2d1c3)'
+    : 'linear(to-r, #12063b, #09555c)';
+
   return (
     <Box
       as="footer"
-      bg="gray.50"
-      borderTop="1px"
-      borderColor="gray.200"
-      _dark={{
-        bg: 'gray.900',
-        borderColor: 'gray.700'
-      }}
+      bgGradient={bgGradient}
+      px={7}
+      py={5}
     >
       <Container maxW="container.xl" py={4}>
         <Stack
@@ -21,9 +22,19 @@ function Footer() {
           justify="space-between"
           align="center"
         >
-          <Text fontSize="md">
-            © {new Date().getFullYear()} Panvas. All rights reserved.
-          </Text>
+          <Stack direction="row" spacing={4} align="center">
+            {/* <Link href="https://www.hkust-gz.edu.cn" isExternal>
+              <Image 
+                src="/UST-GZ.svg"
+                alt="HKUST(GZ)" 
+                height="40px"
+                _dark={{ filter: 'brightness(0) invert(1)' }}
+              />
+            </Link> */}
+            <Text fontSize="md">
+              © {new Date().getFullYear()} Panvas. All rights reserved.
+            </Text>
+          </Stack>
           <Stack direction="row" spacing={3} align="center">
             <Text fontSize="md">Follow us on:</Text>
             <IconButton
