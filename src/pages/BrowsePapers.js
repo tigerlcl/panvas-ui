@@ -15,7 +15,7 @@ import {
   HStack,
   Icon,
   Badge,
-  useColorModeValue,
+  useColorMode,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { FiBookmark, FiThumbsUp, FiMessageSquare } from 'react-icons/fi';
@@ -63,14 +63,19 @@ const papers = [
 ];
 
 function BrowsePapers() {
-  const cardBg = useColorModeValue('white', 'gray.700');
+  const { colorMode } = useColorMode();
+  const cardBg = colorMode === 'light' ? 'brand.accent' : 'brand.tertiary';
+  const textColor = colorMode === 'light' ? 'gray.600' : 'gray.200';
+  const headingColor = colorMode === 'light' ? 'black' : 'white';
 
   return (
     <Box as={motion.div} initial="hidden" animate="show" variants={container}>
       <Container maxW="container.xl">
         {/* Search and Filter Section */}
         <MotionBox mb={8} variants={item}>
-          <Heading mb={6}>Browse Papers</Heading>
+          <Heading mb={6} color={headingColor}>
+            Browse Papers
+          </Heading>
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4}>
             <Input placeholder="Search papers..." />
             <Select placeholder="Filter by category">
@@ -104,10 +109,12 @@ function BrowsePapers() {
                 </Text>
               </CardHeader>
               <CardBody>
-                <Text noOfLines={3}>{paper.abstract}</Text>
+                <Text noOfLines={3} color={textColor}>
+                  {paper.abstract}
+                </Text>
                 <HStack mt={4} spacing={2}>
                   {paper.tags.map((tag) => (
-                    <Badge key={tag} colorScheme="blue">
+                    <Badge key={tag} colorScheme="blue" bg={'#fbe0e0'} color={'white'}>
                       {tag}
                     </Badge>
                   ))}
@@ -141,6 +148,8 @@ function BrowsePapers() {
             size="lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            bg={colorMode === 'light' ? 'blue.500' : 'blue.200'}
+            color={colorMode === 'light' ? 'white' : 'gray.800'}
           >
             Load More Papers
           </Button>

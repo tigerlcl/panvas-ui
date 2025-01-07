@@ -15,7 +15,7 @@ import {
   Button,
   Icon,
   Divider,
-  useColorModeValue,
+  useColorMode,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { FiMessageSquare, FiHeart, FiShare2 } from 'react-icons/fi';
@@ -71,15 +71,19 @@ const discussions = [
 ];
 
 function Community() {
-  const cardBg = useColorModeValue('white', 'gray.700');
+  const { colorMode } = useColorMode();
+  const textColor = colorMode === 'light' ? 'gray.600' : 'gray.200';
+  const headingColor = colorMode === 'light' ? 'black' : 'white';
 
   return (
     <Box as={motion.div} initial="hidden" animate="show" variants={container}>
       <Container maxW="container.xl">
         {/* Header Section */}
         <MotionBox mb={8} variants={item}>
-          <Heading mb={4}>Community Discussions</Heading>
-          <Text color="gray.600">
+          <Heading mb={4} color={headingColor}>
+            Community Discussions
+          </Heading>
+          <Text color={textColor}>
             Join the conversation with fellow researchers and academics
           </Text>
         </MotionBox>
@@ -93,6 +97,8 @@ function Community() {
             as={motion.button}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            bg={colorMode === 'light' ? 'blue.500' : 'blue.200'}
+            color={colorMode === 'light' ? 'white' : 'gray.800'}
           >
             Start a Discussion
           </Button>
@@ -103,7 +109,7 @@ function Community() {
           {discussions.map((discussion) => (
             <MotionCard
               key={discussion.id}
-              bg={cardBg}
+              // bg={cardBg}
               variants={item}
               whileHover={{ scale: 1.01 }}
             >
@@ -114,7 +120,9 @@ function Community() {
                     name={discussion.author.name}
                   />
                   <VStack align="start" spacing={0}>
-                    <Text fontWeight="bold">{discussion.author.name}</Text>
+                    <Text fontWeight="bold" color={headingColor}>
+                      {discussion.author.name}
+                    </Text>
                     <Text fontSize="sm" color="gray.500">
                       {discussion.author.title}
                     </Text>
@@ -125,8 +133,10 @@ function Community() {
                 </HStack>
               </CardHeader>
               <CardBody>
-                <Heading size="md" mb={2}>{discussion.title}</Heading>
-                <Text color="gray.600">{discussion.content}</Text>
+                <Heading size="md" mb={2} color={headingColor}>
+                  {discussion.title}
+                </Heading>
+                <Text color={textColor}>{discussion.content}</Text>
               </CardBody>
               <Divider />
               <CardFooter>
@@ -137,6 +147,7 @@ function Community() {
                     as={motion.button}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
+                    color={colorMode === 'light' ? 'gray.600' : 'gray.200'}
                   >
                     {discussion.likes}
                   </Button>
@@ -146,6 +157,7 @@ function Community() {
                     as={motion.button}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
+                    color={colorMode === 'light' ? 'gray.600' : 'gray.200'}
                   >
                     {discussion.comments}
                   </Button>
@@ -155,6 +167,7 @@ function Community() {
                     as={motion.button}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
+                    color={colorMode === 'light' ? 'gray.600' : 'gray.200'}
                   >
                     {discussion.shares}
                   </Button>
@@ -173,6 +186,9 @@ function Community() {
             as={motion.button}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            bg={colorMode === 'light' ? 'white' : 'brand.tertiary'}
+            color={colorMode === 'light' ? 'blue.500' : 'blue.200'}
+            borderColor={colorMode === 'light' ? 'blue.500' : 'blue.200'}
           >
             Load More Discussions
           </Button>

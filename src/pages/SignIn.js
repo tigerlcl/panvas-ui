@@ -14,7 +14,7 @@ import {
   IconButton,
   Divider,
   HStack,
-  useColorModeValue,
+  useColorMode,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { FiEye, FiEyeOff, FiGithub, FiMail } from 'react-icons/fi';
@@ -25,7 +25,10 @@ const MotionBox = motion(Box);
 function SignIn() {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
-  const formBg = useColorModeValue('white', 'gray.700');
+  const { colorMode } = useColorMode();
+  const formBg = colorMode === 'light' ? 'white' : 'brand.tertiary';
+  const headingColor = colorMode === 'light' ? 'black' : 'white';
+  const textColor = colorMode === 'light' ? 'gray.600' : 'gray.200';
 
   return (
     <Container maxW="container.sm" py={8}>
@@ -36,8 +39,10 @@ function SignIn() {
       >
         <VStack spacing={8} align="stretch">
           <VStack spacing={2} align="center">
-            <Heading size="xl">Welcome Back</Heading>
-            <Text color="gray.500">
+            <Heading size="xl" color={headingColor}>
+              Welcome Back
+            </Heading>
+            <Text color={textColor}>
               Sign in to continue to your research journey
             </Text>
           </VStack>
@@ -85,15 +90,27 @@ function SignIn() {
                 as={motion.button}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                bg={colorMode === 'light' ? 'blue.500' : 'blue.200'}
+                color={colorMode === 'light' ? 'white' : 'gray.800'}
               >
                 Sign In
               </Button>
 
               <HStack justify="space-between" width="full">
-                <Button variant="link" colorScheme="blue" size="sm">
+                <Button
+                  variant="link"
+                  colorScheme="blue"
+                  size="sm"
+                  color={colorMode === 'light' ? 'blue.500' : 'blue.200'}
+                >
                   Forgot Password?
                 </Button>
-                <Button variant="link" colorScheme="blue" size="sm">
+                <Button
+                  variant="link"
+                  colorScheme="blue"
+                  size="sm"
+                  color={colorMode === 'light' ? 'blue.500' : 'blue.200'}
+                >
                   Create Account
                 </Button>
               </HStack>
@@ -101,7 +118,7 @@ function SignIn() {
 
             <VStack mt={8} spacing={4}>
               <Divider />
-              <Text color="gray.500">Or continue with</Text>
+              <Text color={textColor}>Or continue with</Text>
 
               <HStack spacing={4} width="full">
                 <Button
@@ -111,6 +128,8 @@ function SignIn() {
                   as={motion.button}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  borderColor={colorMode === 'light' ? 'gray.300' : 'gray.600'}
+                  color={textColor}
                 >
                   Google
                 </Button>
@@ -121,6 +140,8 @@ function SignIn() {
                   as={motion.button}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
+                  borderColor={colorMode === 'light' ? 'gray.300' : 'gray.600'}
+                  color={textColor}
                 >
                   GitHub
                 </Button>
@@ -133,6 +154,8 @@ function SignIn() {
                 as={motion.button}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                borderColor={colorMode === 'light' ? 'gray.300' : 'gray.600'}
+                color={textColor}
               >
                 Sign in with Email
               </Button>

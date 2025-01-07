@@ -7,10 +7,11 @@ import Home from './pages/Home';
 import BrowsePapers from './pages/BrowsePapers';
 import Community from './pages/Community';
 import SignIn from './pages/SignIn';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <Box minH="100vh">
+    <Box minH="100vh" display="flex" flexDirection="column">
       <Grid
         templateAreas={{
           base: `"nav" "main"`,
@@ -18,7 +19,8 @@ function App() {
         }}
         gridTemplateRows={{ base: 'auto 1fr', lg: 'auto 1fr' }}
         gridTemplateColumns={{ base: '1fr', lg: '250px 1fr' }}
-        h="100vh"
+        flex="1"
+        overflow="hidden"
       >
         <GridItem area="nav">
           <Navbar />
@@ -26,7 +28,11 @@ function App() {
         <GridItem area="side" display={{ base: 'none', lg: 'block' }}>
           <Sidebar />
         </GridItem>
-        <GridItem area="main" p={4} overflowY="auto">
+        <GridItem 
+          area="main" 
+          overflow="hidden"
+          h="100%"
+        >
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/browse" element={<BrowsePapers />} />
@@ -35,6 +41,7 @@ function App() {
           </Routes>
         </GridItem>
       </Grid>
+      <Footer />
     </Box>
   );
 }
