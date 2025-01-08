@@ -42,12 +42,12 @@ const features = [
   {
     icon: FiArchive,
     title: 'Help Wanted Zone',
-    description: 'Request paid review services, post questionnaires, or recruit experiment subjects. Earn PanCoins for contributing.',
+    description: 'Request paid review services, post questionnaires, or recruit experiment subjects. Earn PaperPoint for contributing.',
   },
   {
     icon: FiGift,
     title: 'Carnival',
-    description: 'Participate in exciting mini-games like paper decision betting. Use PanCoins to join and win more rewards.',
+    description: 'Participate in exciting mini-games like paper decision betting. Use PaperPoint to join and win more rewards.',
   }
 ];
 
