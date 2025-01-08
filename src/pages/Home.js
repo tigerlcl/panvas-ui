@@ -15,6 +15,7 @@ import {
   Flex,
   Link as ChakraLink,
   useColorMode,
+  useColorMode,
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -92,8 +93,30 @@ function Home() {
     ? 'linear(to-r, #660e60, #f6416c)'
     : 'linear(to-r, #fff6b7, #ff8177)';
 
+  const { colorMode } = useColorMode();
+  const cardBg = colorMode === 'light' ? 'white' : 'brand.tertiary';
+  const textColor = colorMode === 'light' ? 'gray.600' : 'gray.200';
+  const headingColor = colorMode === 'light' ? 'white' : 'white';
+
+  // Complementary gradients for other sections
+  const cardHeaderGradient = colorMode === 'light'
+    ? 'linear(to-r, #f6416c, #ff8177)'
+    : 'linear(to-r, #f6416c, #2d3436)';
+
+  const textGradient = colorMode === 'light'
+    ? 'linear(to-r, #660e60, #f6416c)'
+    : 'linear(to-r, #fff6b7, #ff8177)';
+
 
   return (
+    <Box
+      as={motion.div}
+      initial="hidden"
+      animate="show"
+      variants={container}
+      color={textColor}
+    >
+      {/* Hero Section with Gradient */}
     <Box
       as={motion.div}
       initial="hidden"
@@ -119,7 +142,40 @@ function Home() {
           bgGradient: 'linear(to-br, whiteAlpha.200, transparent)',
           pointerEvents: 'none',
         }}
+        position="relative"
+        overflow="hidden"
+        _before={{
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          bgGradient: 'linear(to-br, whiteAlpha.200, transparent)',
+          pointerEvents: 'none',
+        }}
       >
+        <Container maxW="container.xl" position="relative">
+          <VStack spacing={8} align="center" textAlign="center">
+            <Heading 
+              size="2xl" 
+              color={headingColor}
+              bgGradient={textGradient}
+              bgClip="text"
+              fontSize={{ base: "4xl", md: "6xl" }}
+              fontWeight="bold"
+            >
+              One-Stop Academic Hub
+            </Heading>
+            <Text 
+              fontSize={{ base: "xl", md: "2xl" }} 
+              color={textColor}
+              maxW="2xl"
+              textShadow="0 2px 4px rgba(0,0,0,0.1)"
+            >
+              Discover, discuss, and collaborate on academic papers in a
+              vibrant research community! <br/>
+              Make Academy Great Again!
         <Container maxW="container.xl" position="relative">
           <VStack spacing={8} align="center" textAlign="center">
             <Heading 
@@ -156,11 +212,25 @@ function Home() {
               _active={{
                 transform: 'translateY(0)',
               }}
+              bgGradient={cardHeaderGradient}
+              color="white"
+              px={8}
+              py={6}
+              fontSize="xl"
+              _hover={{
+                transform: 'translateY(-2px)',
+              }}
+              _active={{
+                transform: 'translateY(0)',
+              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               shadow="lg"
               transition="all 0.2s"
+              shadow="lg"
+              transition="all 0.2s"
             >
+              Get Started for Free
               Get Started for Free
             </Button>
           </VStack>
@@ -169,7 +239,16 @@ function Home() {
 
       <Container maxW="container.xl">
         {/* Popular Topics Section with Gradient Cards */}
+        {/* Popular Topics Section with Gradient Cards */}
         <MotionBox mb={10} variants={item}>
+          <Heading 
+            size="lg" 
+            mb={6} 
+            bgGradient={textGradient}
+            bgClip="text"
+          >
+            Popular Topics
+          </Heading>
           <Heading 
             size="lg" 
             mb={6} 
@@ -201,7 +280,26 @@ function Home() {
                 borderWidth="1px"
                 borderColor={colorMode === 'light' ? 'gray.200' : 'whiteAlpha.200'}
                 shadow="lg"
+                overflow="hidden"
+                position="relative"
+                _before={{
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  right: 0,
+                  bottom: 0,
+                  left: 0,
+                  bgGradient: 'linear(to-br, whiteAlpha.50, transparent)',
+                  pointerEvents: 'none',
+                }}
+                borderWidth="1px"
+                borderColor={colorMode === 'light' ? 'gray.200' : 'whiteAlpha.200'}
+                shadow="lg"
               >
+                <CardHeader 
+                  bgGradient={cardHeaderGradient}
+                >
+                  <Heading size="md" color="white">{topic.title}</Heading>
                 <CardHeader 
                   bgGradient={cardHeaderGradient}
                 >
@@ -209,8 +307,18 @@ function Home() {
                 </CardHeader>
                 <CardBody>
                   <Text color={textColor}>{topic.count} papers</Text>
+                  <Text color={textColor}>{topic.count} papers</Text>
                 </CardBody>
                 <CardFooter>
+                  <Button
+                    as={Link}
+                    to={`/topic/${topic.id}`}
+                    variant="ghost"
+                    _hover={{
+                      bgGradient: cardHeaderGradient,
+                      color: "white",
+                    }}
+                  >
                   <Button
                     as={Link}
                     to={`/topic/${topic.id}`}
@@ -237,8 +345,21 @@ function Home() {
             bgClip="text">
             Recent Activities
           </Heading>
+          <Heading             
+            size="lg" 
+            mb={6} 
+            bgGradient={textGradient}
+            bgClip="text">
+            Recent Activities
+          </Heading>
           <MotionCard bg={cardBg}>
             <CardBody>
+              <VStack
+                spacing={4}
+                align="stretch"
+                maxH="300px"
+                overflowY="auto"
+              >
               <VStack
                 spacing={4}
                 align="stretch"
@@ -260,7 +381,22 @@ function Home() {
                       boxSize={5}
                       color={colorMode === 'light'? '#f6416c': '#fff6b7'}
                     />
+                    <Icon
+                      as={FiTrendingUp}
+                      boxSize={5}
+                      color={colorMode === 'light'? '#f6416c': '#fff6b7'}
+                    />
                     <Text>
+                      <Text as="span" fontWeight="semibold">
+                        {activity.user}
+                      </Text>
+                      {' '}
+                      {activity.action}{' '}
+                      <ChakraLink
+                        color={colorMode === 'light'? '#f6416c': '#fff6b7'}
+                      >
+                        "{activity.paper}"
+                      </ChakraLink>
                       <Text as="span" fontWeight="semibold">
                         {activity.user}
                       </Text>
@@ -279,6 +415,7 @@ function Home() {
           </MotionCard>
         </MotionBox>
 
+        {/* Features Section with Gradient Icons */}
         {/* Features Section with Gradient Icons */}
         <MotionBox mb={10} variants={item}>
           <Heading 
