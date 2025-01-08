@@ -11,11 +11,12 @@ import {
   Flex,
   Link as ChakraLink,
   useColorMode,
-  useTheme
+  useTheme,
+  useDisclosure
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { FiBook, FiMessageCircle, FiArchive, FiTrendingUp, FiGift } from 'react-icons/fi';
-
+import SignIn from './SignIn';
 
 const MotionBox = motion(Box);
 
@@ -54,8 +55,10 @@ const features = [
 function Home() {
   const { colorMode } = useColorMode();
   const theme = useTheme();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
+    <>
     <Box
       as={motion.div}
       initial="hidden"
@@ -87,6 +90,7 @@ function Home() {
               Make Academy Great Again!
             </Text>
             <Button
+              onClick={onOpen}
               as={motion.button}
               size="lg"
               variant="ghost"
@@ -188,6 +192,8 @@ function Home() {
         </MotionBox>
       </Container>
     </Box>
+    <SignIn isOpen={isOpen} onClose={onClose} />
+    </>
   );
 }
 
