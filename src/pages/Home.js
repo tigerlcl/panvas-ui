@@ -15,7 +15,7 @@ import {
   Flex,
   Link as ChakraLink,
   useColorMode,
-  useColorMode,
+  useTheme
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -61,17 +61,17 @@ const features = [
     title: 'Community Discussion',
     description: 'Engage with papers through reactions, comments, and anonymous discussions. Build meaningful connections with fellow researchers.',
   },
-    {
+  {
     icon: FiBook,
     title: 'Preprint Hub',
     description: 'Share your paper drafts for community review. Discover trending papers and stay updated with hot topics in your field.',
   },
-    {
+  {
     icon: FiArchive,
     title: 'Help Wanted Zone',
     description: 'Request paid review services, post questionnaires, or recruit experiment subjects. Earn PanCoins for contributing.',
   },
-    {
+  {
     icon: FiGift,
     title: 'Carnival',
     description: 'Participate in exciting mini-games like paper decision betting. Use PanCoins to join and win more rewards.',
@@ -80,33 +80,7 @@ const features = [
 
 function Home() {
   const { colorMode } = useColorMode();
-  const cardBg = colorMode === 'light' ? 'white' : 'brand.tertiary';
-  const textColor = colorMode === 'light' ? 'gray.600' : 'gray.200';
-  const headingColor = colorMode === 'light' ? 'white' : 'white';
-
-  // Complementary gradients for other sections
-  const cardHeaderGradient = colorMode === 'light'
-    ? 'linear(to-r, #f6416c, #ff8177)'
-    : 'linear(to-r, #f6416c, #2d3436)';
-
-  const textGradient = colorMode === 'light'
-    ? 'linear(to-r, #660e60, #f6416c)'
-    : 'linear(to-r, #fff6b7, #ff8177)';
-
-  const { colorMode } = useColorMode();
-  const cardBg = colorMode === 'light' ? 'white' : 'brand.tertiary';
-  const textColor = colorMode === 'light' ? 'gray.600' : 'gray.200';
-  const headingColor = colorMode === 'light' ? 'white' : 'white';
-
-  // Complementary gradients for other sections
-  const cardHeaderGradient = colorMode === 'light'
-    ? 'linear(to-r, #f6416c, #ff8177)'
-    : 'linear(to-r, #f6416c, #2d3436)';
-
-  const textGradient = colorMode === 'light'
-    ? 'linear(to-r, #660e60, #f6416c)'
-    : 'linear(to-r, #fff6b7, #ff8177)';
-
+  const theme = useTheme();
 
   return (
     <Box
@@ -114,15 +88,7 @@ function Home() {
       initial="hidden"
       animate="show"
       variants={container}
-      color={textColor}
-    >
-      {/* Hero Section with Gradient */}
-    <Box
-      as={motion.div}
-      initial="hidden"
-      animate="show"
-      variants={container}
-      color={textColor}
+      color="text.default"
     >
       {/* Hero Section with Gradient */}
       <MotionBox
@@ -139,19 +105,7 @@ function Home() {
           right: 0,
           bottom: 0,
           left: 0,
-          bgGradient: 'linear(to-br, whiteAlpha.200, transparent)',
-          pointerEvents: 'none',
-        }}
-        position="relative"
-        overflow="hidden"
-        _before={{
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-          bgGradient: 'linear(to-br, whiteAlpha.200, transparent)',
+          bgColor: theme.semanticTokens.colors.bg.secondary[colorMode],
           pointerEvents: 'none',
         }}
       >
@@ -159,8 +113,8 @@ function Home() {
           <VStack spacing={8} align="center" textAlign="center">
             <Heading 
               size="2xl" 
-              color={headingColor}
-              bgGradient={textGradient}
+              color="text.heading"
+              bgGradient={theme.gradients.button[colorMode]}
               bgClip="text"
               fontSize={{ base: "4xl", md: "6xl" }}
               fontWeight="bold"
@@ -169,28 +123,7 @@ function Home() {
             </Heading>
             <Text 
               fontSize={{ base: "xl", md: "2xl" }} 
-              color={textColor}
-              maxW="2xl"
-              textShadow="0 2px 4px rgba(0,0,0,0.1)"
-            >
-              Discover, discuss, and collaborate on academic papers in a
-              vibrant research community! <br/>
-              Make Academy Great Again!
-        <Container maxW="container.xl" position="relative">
-          <VStack spacing={8} align="center" textAlign="center">
-            <Heading 
-              size="2xl" 
-              color={headingColor}
-              bgGradient={textGradient}
-              bgClip="text"
-              fontSize={{ base: "4xl", md: "6xl" }}
-              fontWeight="bold"
-            >
-              One-Stop Academic Hub
-            </Heading>
-            <Text 
-              fontSize={{ base: "xl", md: "2xl" }} 
-              color={textColor}
+              color="text.default"
               maxW="2xl"
               textShadow="0 2px 4px rgba(0,0,0,0.1)"
             >
@@ -201,36 +134,15 @@ function Home() {
             <Button
               as={motion.button}
               size="lg"
-              bgGradient={cardHeaderGradient}
-              color="white"
+              variant="gradient"
               px={8}
               py={6}
               fontSize="xl"
-              _hover={{
-                transform: 'translateY(-2px)',
-              }}
-              _active={{
-                transform: 'translateY(0)',
-              }}
-              bgGradient={cardHeaderGradient}
-              color="white"
-              px={8}
-              py={6}
-              fontSize="xl"
-              _hover={{
-                transform: 'translateY(-2px)',
-              }}
-              _active={{
-                transform: 'translateY(0)',
-              }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               shadow="lg"
               transition="all 0.2s"
-              shadow="lg"
-              transition="all 0.2s"
             >
-              Get Started for Free
               Get Started for Free
             </Button>
           </VStack>
@@ -239,20 +151,11 @@ function Home() {
 
       <Container maxW="container.xl">
         {/* Popular Topics Section with Gradient Cards */}
-        {/* Popular Topics Section with Gradient Cards */}
         <MotionBox mb={10} variants={item}>
           <Heading 
             size="lg" 
             mb={6} 
-            bgGradient={textGradient}
-            bgClip="text"
-          >
-            Popular Topics
-          </Heading>
-          <Heading 
-            size="lg" 
-            mb={6} 
-            bgGradient={textGradient}
+            bgGradient={theme.gradients.button[colorMode]}
             bgClip="text"
           >
             Popular Topics
@@ -261,7 +164,7 @@ function Home() {
             {topics.map((topic) => (
               <MotionCard
                 key={topic.id}
-                bg={cardBg}
+                bg="bg.secondary"
                 variants={item}
                 whileHover={{ scale: 1.02 }}
                 cursor="pointer"
@@ -278,36 +181,16 @@ function Home() {
                   pointerEvents: 'none',
                 }}
                 borderWidth="1px"
-                borderColor={colorMode === 'light' ? 'gray.200' : 'whiteAlpha.200'}
-                shadow="lg"
-                overflow="hidden"
-                position="relative"
-                _before={{
-                  content: '""',
-                  position: 'absolute',
-                  top: 0,
-                  right: 0,
-                  bottom: 0,
-                  left: 0,
-                  bgGradient: 'linear(to-br, whiteAlpha.50, transparent)',
-                  pointerEvents: 'none',
-                }}
-                borderWidth="1px"
-                borderColor={colorMode === 'light' ? 'gray.200' : 'whiteAlpha.200'}
+                borderColor="border.secondary"
                 shadow="lg"
               >
                 <CardHeader 
-                  bgGradient={cardHeaderGradient}
+                  bgGradient={theme.gradients.button[colorMode]}
                 >
-                  <Heading size="md" color="white">{topic.title}</Heading>
-                <CardHeader 
-                  bgGradient={cardHeaderGradient}
-                >
-                  <Heading size="md" color="white">{topic.title}</Heading>
+                  <Heading size="md" color="text.inverse">{topic.title}</Heading>
                 </CardHeader>
                 <CardBody>
-                  <Text color={textColor}>{topic.count} papers</Text>
-                  <Text color={textColor}>{topic.count} papers</Text>
+                  <Text color="text.default">{topic.count} papers</Text>
                 </CardBody>
                 <CardFooter>
                   <Button
@@ -315,17 +198,8 @@ function Home() {
                     to={`/topic/${topic.id}`}
                     variant="ghost"
                     _hover={{
-                      bgGradient: cardHeaderGradient,
-                      color: "white",
-                    }}
-                  >
-                  <Button
-                    as={Link}
-                    to={`/topic/${topic.id}`}
-                    variant="ghost"
-                    _hover={{
-                      bgGradient: cardHeaderGradient,
-                      color: "white",
+                      bgGradient: theme.gradients.button[colorMode],
+                      color: "text.inverse",
                     }}
                   >
                     View Papers
@@ -341,25 +215,13 @@ function Home() {
           <Heading             
             size="lg" 
             mb={6} 
-            bgGradient={textGradient}
-            bgClip="text">
+            bgGradient={theme.gradients.button[colorMode]}
+            bgClip="text"
+          >
             Recent Activities
           </Heading>
-          <Heading             
-            size="lg" 
-            mb={6} 
-            bgGradient={textGradient}
-            bgClip="text">
-            Recent Activities
-          </Heading>
-          <MotionCard bg={cardBg}>
+          <MotionCard bg="bg.secondary">
             <CardBody>
-              <VStack
-                spacing={4}
-                align="stretch"
-                maxH="300px"
-                overflowY="auto"
-              >
               <VStack
                 spacing={4}
                 align="stretch"
@@ -379,12 +241,7 @@ function Home() {
                     <Icon
                       as={FiTrendingUp}
                       boxSize={5}
-                      color={colorMode === 'light'? '#f6416c': '#fff6b7'}
-                    />
-                    <Icon
-                      as={FiTrendingUp}
-                      boxSize={5}
-                      color={colorMode === 'light'? '#f6416c': '#fff6b7'}
+                      color="brand.primary"
                     />
                     <Text>
                       <Text as="span" fontWeight="semibold">
@@ -393,17 +250,7 @@ function Home() {
                       {' '}
                       {activity.action}{' '}
                       <ChakraLink
-                        color={colorMode === 'light'? '#f6416c': '#fff6b7'}
-                      >
-                        "{activity.paper}"
-                      </ChakraLink>
-                      <Text as="span" fontWeight="semibold">
-                        {activity.user}
-                      </Text>
-                      {' '}
-                      {activity.action}{' '}
-                      <ChakraLink
-                        color={colorMode === 'light'? '#f6416c': '#fff6b7'}
+                        color="brand.primary"
                       >
                         "{activity.paper}"
                       </ChakraLink>
@@ -416,12 +263,11 @@ function Home() {
         </MotionBox>
 
         {/* Features Section with Gradient Icons */}
-        {/* Features Section with Gradient Icons */}
         <MotionBox mb={10} variants={item}>
           <Heading 
             size="lg" 
             mb={6} 
-            bgGradient={textGradient}
+            bgGradient={theme.gradients.button[colorMode]}
             bgClip="text"
           >
             Why Choose Panvas?
@@ -430,10 +276,10 @@ function Home() {
             {features.map((feature, index) => (
               <Box key={index}>
                 <Flex align="center" mb={2}>
-                  <Icon as={feature.icon} boxSize={6} mr={2} color={colorMode === 'light'? '#f6416c': '#fff6b7'} />
-                  <Heading size="md" fontWeight="semibold" color={textColor}>{feature.title}</Heading>
+                  <Icon as={feature.icon} boxSize={6} mr={2} color="brand.primary" />
+                  <Heading size="md" fontWeight="semibold" color="text.heading">{feature.title}</Heading>
                 </Flex>
-                <Text color={textColor}>{feature.description}</Text>
+                <Text color="text.default">{feature.description}</Text>
               </Box>
             ))}
           </SimpleGrid>

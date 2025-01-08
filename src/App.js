@@ -7,7 +7,6 @@ import BrowsePapers from './pages/BrowsePapers';
 import Community from './pages/Community';
 import SignIn from './pages/SignIn';
 import Footer from './components/Footer';
-import Footer from './components/Footer';
 
 function App() {
   return (

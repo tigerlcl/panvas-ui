@@ -3,7 +3,6 @@ import { Box, Flex, Button, Heading, useColorMode, Image, Stack, Text, useTheme 
 import { Link as RouterLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SunIcon, MoonIcon } from '@chakra-ui/icons';
-import { SunIcon, MoonIcon } from '@chakra-ui/icons';
 
 const MotionButton = motion(Button);
 
@@ -45,7 +44,6 @@ function Navbar() {
             to="/browse"
             variant="ghost"
             _hover={{ bg: 'whiteAlpha.200' }}
-            _hover={{ bg: 'whiteAlpha.200' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -55,7 +53,6 @@ function Navbar() {
             as={RouterLink}
             to="/community"
             variant="ghost"
-            _hover={{ bg: 'whiteAlpha.200' }}
             _hover={{ bg: 'whiteAlpha.200' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
