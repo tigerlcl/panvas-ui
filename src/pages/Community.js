@@ -16,6 +16,7 @@ import {
   Icon,
   Divider,
   useColorMode,
+  useTheme,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { FiMessageSquare, FiHeart, FiShare2 } from 'react-icons/fi';
@@ -67,23 +68,21 @@ const discussions = [
     shares: 12,
     timestamp: "4 hours ago"
   },
-  // Add more discussions as needed
 ];
 
 function Community() {
   const { colorMode } = useColorMode();
-  const textColor = colorMode === 'light' ? 'gray.600' : 'gray.200';
-  const headingColor = colorMode === 'light' ? 'black' : 'white';
+  const theme = useTheme();
 
   return (
     <Box as={motion.div} initial="hidden" animate="show" variants={container}>
       <Container maxW="container.xl">
         {/* Header Section */}
         <MotionBox mb={8} variants={item}>
-          <Heading mb={4} color={headingColor}>
+          <Heading mb={4} color="text.heading">
             Community Discussions
           </Heading>
-          <Text color={textColor}>
+          <Text color="text.default">
             Join the conversation with fellow researchers and academics
           </Text>
         </MotionBox>
@@ -95,10 +94,9 @@ function Community() {
             size="lg"
             leftIcon={<Icon as={FiMessageSquare} />}
             as={motion.button}
+            bgColor={theme.semanticTokens.button[colorMode]}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            bg={colorMode === 'light' ? 'blue.500' : 'blue.200'}
-            color={colorMode === 'light' ? 'white' : 'gray.800'}
           >
             Start a Discussion
           </Button>
@@ -109,7 +107,6 @@ function Community() {
           {discussions.map((discussion) => (
             <MotionCard
               key={discussion.id}
-              // bg={cardBg}
               variants={item}
               whileHover={{ scale: 1.01 }}
             >
@@ -120,23 +117,23 @@ function Community() {
                     name={discussion.author.name}
                   />
                   <VStack align="start" spacing={0}>
-                    <Text fontWeight="bold" color={headingColor}>
+                    <Text fontWeight="bold" color="text.heading">
                       {discussion.author.name}
                     </Text>
-                    <Text fontSize="sm" color="gray.500">
+                    <Text fontSize="sm" color="text.default">
                       {discussion.author.title}
                     </Text>
-                    <Text fontSize="xs" color="gray.500">
+                    <Text fontSize="xs" color="text.default">
                       {discussion.timestamp}
                     </Text>
                   </VStack>
                 </HStack>
               </CardHeader>
               <CardBody>
-                <Heading size="md" mb={2} color={headingColor}>
+                <Heading size="md" mb={2} color="text.heading">
                   {discussion.title}
                 </Heading>
-                <Text color={textColor}>{discussion.content}</Text>
+                <Text color="text.default">{discussion.content}</Text>
               </CardBody>
               <Divider />
               <CardFooter>
@@ -147,7 +144,7 @@ function Community() {
                     as={motion.button}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    color={colorMode === 'light' ? 'gray.600' : 'gray.200'}
+                    color="text.default"
                   >
                     {discussion.likes}
                   </Button>
@@ -157,7 +154,7 @@ function Community() {
                     as={motion.button}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    color={colorMode === 'light' ? 'gray.600' : 'gray.200'}
+                    color="text.default"
                   >
                     {discussion.comments}
                   </Button>
@@ -167,7 +164,7 @@ function Community() {
                     as={motion.button}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
-                    color={colorMode === 'light' ? 'gray.600' : 'gray.200'}
+                    color="text.default"
                   >
                     {discussion.shares}
                   </Button>
@@ -186,9 +183,9 @@ function Community() {
             as={motion.button}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            bg={colorMode === 'light' ? 'white' : 'brand.tertiary'}
-            color={colorMode === 'light' ? 'blue.500' : 'blue.200'}
-            borderColor={colorMode === 'light' ? 'blue.500' : 'blue.200'}
+            bg="bg.secondary"
+            color="button.primary"
+            borderColor="button.primary"
           >
             Load More Discussions
           </Button>

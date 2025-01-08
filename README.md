@@ -43,7 +43,7 @@ Panvas aims to revolutionize how researchers interact with academic papers by co
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/panvas-ui.git
+git clone https://github.com/tigerlcl/panvas.git
 ```
 
 2. Install dependencies

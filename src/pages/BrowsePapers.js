@@ -16,27 +16,13 @@ import {
   Icon,
   Badge,
   useColorMode,
+  useTheme,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { FiBookmark, FiThumbsUp, FiMessageSquare } from 'react-icons/fi';
 
 const MotionBox = motion(Box);
 const MotionCard = motion(Card);
-
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 }
-};
 
 const papers = [
   {
@@ -64,16 +50,14 @@ const papers = [
 
 function BrowsePapers() {
   const { colorMode } = useColorMode();
-  const cardBg = colorMode === 'light' ? 'brand.accent' : 'brand.tertiary';
-  const textColor = colorMode === 'light' ? 'gray.600' : 'gray.200';
-  const headingColor = colorMode === 'light' ? 'black' : 'white';
+  const theme = useTheme();
 
   return (
-    <Box as={motion.div} initial="hidden" animate="show" variants={container}>
+    <Box as={motion.div} initial="hidden" animate="show">
       <Container maxW="container.xl">
         {/* Search and Filter Section */}
-        <MotionBox mb={8} variants={item}>
-          <Heading mb={6} color={headingColor}>
+        <MotionBox mb={8} >
+          <Heading mb={6} color="text.heading">
             Browse Papers
           </Heading>
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={4}>
@@ -97,24 +81,26 @@ function BrowsePapers() {
           {papers.map((paper) => (
             <MotionCard
               key={paper.id}
-              bg={cardBg}
-              variants={item}
               whileHover={{ scale: 1.02 }}
               cursor="pointer"
             >
               <CardHeader>
-                <Heading size="md">{paper.title}</Heading>
-                <Text color="gray.500" fontSize="sm" mt={2}>
+                <Heading size="md" color="text.heading">{paper.title}</Heading>
+                <Text color="text.default" fontSize="sm" mt={2}>
                   {paper.authors}
                 </Text>
               </CardHeader>
               <CardBody>
-                <Text noOfLines={3} color={textColor}>
+                <Text noOfLines={3} color="text.default">
                   {paper.abstract}
                 </Text>
                 <HStack mt={4} spacing={2}>
                   {paper.tags.map((tag) => (
-                    <Badge key={tag} colorScheme="blue" bg={'#fbe0e0'} color={'white'}>
+                    <Badge 
+                      key={tag} 
+                      bgGradient={theme.gradients.button[colorMode]}
+                      color="white"
+                    >
                       {tag}
                     </Badge>
                   ))}
@@ -123,16 +109,16 @@ function BrowsePapers() {
               <CardFooter>
                 <HStack spacing={6}>
                   <HStack>
-                    <Icon as={FiThumbsUp} />
-                    <Text>{paper.likes}</Text>
+                    <Icon as={FiThumbsUp} color="text.default" />
+                    <Text color="text.default">{paper.likes}</Text>
                   </HStack>
                   <HStack>
-                    <Icon as={FiMessageSquare} />
-                    <Text>{paper.comments}</Text>
+                    <Icon as={FiMessageSquare} color="text.default" />
+                    <Text color="text.default">{paper.comments}</Text>
                   </HStack>
                   <HStack>
-                    <Icon as={FiBookmark} />
-                    <Text>{paper.saves}</Text>
+                    <Icon as={FiBookmark} color="text.default" />
+                    <Text color="text.default">{paper.saves}</Text>
                   </HStack>
                 </HStack>
               </CardFooter>
@@ -148,8 +134,8 @@ function BrowsePapers() {
             size="lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            bg={colorMode === 'light' ? 'blue.500' : 'blue.200'}
-            color={colorMode === 'light' ? 'white' : 'gray.800'}
+            bg="button.primary"
+            color="button.text"
           >
             Load More Papers
           </Button>
