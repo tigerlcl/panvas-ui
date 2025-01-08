@@ -1,8 +1,24 @@
-import React from 'react';
-import { Box, Flex, Button, Heading, useColorMode, Image, Stack, useTheme, useDisclosure } from '@chakra-ui/react';
+import React, { useState } from 'react';
+import { 
+  Box, 
+  Flex, 
+  Button, 
+  Heading, 
+  useColorMode, 
+  Image, 
+  Stack, 
+  useTheme, 
+  useDisclosure,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  HStack,
+  Portal,
+} from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { SunIcon, MoonIcon } from '@chakra-ui/icons';
+import { SunIcon, MoonIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import SignIn from '../pages/SignIn';
 
 const MotionButton = motion(Button);
@@ -11,6 +27,8 @@ function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
   const theme = useTheme();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [serviceIsOpen, setServiceIsOpen] = useState(false);
+  const [resourceIsOpen, setResourceIsOpen] = useState(false);
 
   return (
     <>
@@ -19,6 +37,8 @@ function Navbar() {
         px={5}
         py={3}
         position="sticky"
+        top={0}
+        zIndex={1000}
       >
         <Flex justify="space-between" align="center" maxW="container.xl" mx="auto">
           <Heading
@@ -42,25 +62,101 @@ function Navbar() {
               </Box>
             </Stack>
           </Heading>
-          <Flex gap={4}>
-            <MotionButton
+          
+          {/* Navigation Section */}
+          <HStack spacing={8} flex={1} justify="center">
+            {/* About Us - Direct Link */}
+            <Button
               as={RouterLink}
-              to="/browse"
+              to="/team"
               variant="ghost"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              fontSize="xl"
+              fontWeight="medium"
+              _hover={{
+                bg: 'whiteAlpha.200'
+              }}
             >
-              Browse Papers
-            </MotionButton>
-            <MotionButton
-              as={RouterLink}
-              to="/community"
-              variant="ghost"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              About Us
+            </Button>
+
+            {/* Service */}
+            <Box 
+              onMouseEnter={() => setServiceIsOpen(true)}
+              onMouseLeave={() => setServiceIsOpen(false)}
             >
-              Community
-            </MotionButton>
+              <Menu isOpen={serviceIsOpen}>
+                <MenuButton
+                  as={Button}
+                  variant="ghost"
+                  rightIcon={<ChevronDownIcon />}
+                  fontSize="xl"
+                  fontWeight="medium"
+                  _hover={{
+                    bg: 'whiteAlpha.200'
+                  }}
+                >
+                  Service
+                </MenuButton>
+                <MenuList
+                  py={0}
+                  borderRadius="md"
+                  shadow="lg"
+                >
+                  <MenuItem as={RouterLink} to="/community">
+                    Forum Discussion
+                  </MenuItem>
+                  <MenuItem as={RouterLink} to="/browse">
+                    Preprint Hub
+                  </MenuItem>
+                  <MenuItem as={RouterLink} to="/help-wanted">
+                    Help Wanted Zone
+                  </MenuItem>
+                  <MenuItem as={RouterLink} to="/carnival">
+                    Carnival
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </Box>
+
+            {/* Resource */}
+            <Box 
+              onMouseEnter={() => setResourceIsOpen(true)}
+              onMouseLeave={() => setResourceIsOpen(false)}
+            >
+              <Menu isOpen={resourceIsOpen}>
+                <MenuButton
+                  as={Button}
+                  variant="ghost"
+                  rightIcon={<ChevronDownIcon />}
+                  fontSize="xl"
+                  fontWeight="medium"
+                  _hover={{
+                    bg: 'whiteAlpha.200'
+                  }}
+                >
+                  Resource
+                </MenuButton>
+                <MenuList
+                  py={0}
+                  borderRadius="md"
+                  shadow="lg"
+                >
+                  <MenuItem as={RouterLink} to="/paperpoint">
+                    PaperPoint
+                  </MenuItem>
+                  <MenuItem as={RouterLink} to="/blogs">
+                    Blogs
+                  </MenuItem>
+                  <MenuItem as={RouterLink} to="/faqs">
+                    FAQs
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </Box>
+          </HStack>
+
+          {/* Right Section */}
+          <HStack spacing={4}>
             <MotionButton
               onClick={onOpen}
               color={'white'}
@@ -80,7 +176,7 @@ function Navbar() {
             >
               {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
             </MotionButton>
-          </Flex>
+          </HStack>
         </Flex>
       </Box>
       <SignIn isOpen={isOpen} onClose={onClose} />

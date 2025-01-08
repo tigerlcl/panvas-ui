@@ -15,7 +15,7 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { FiBook, FiMessageCircle, FiArchive, FiTrendingUp, FiGift } from 'react-icons/fi';
+import { FiBook, FiMessageCircle, FiArchive, FiUsers, FiGift } from 'react-icons/fi';
 import SignIn from './SignIn';
 
 const MotionBox = motion(Box);
@@ -132,7 +132,7 @@ function Home() {
             {features.map((feature, index) => (
               <Box key={index}>
                 <Flex align="center" mb={2}>
-                  <Icon as={feature.icon} boxSize={6} mr={2} />
+                  <Icon as={feature.icon} boxSize={6} mr={2} color={theme.semanticTokens.button[colorMode]} />
                   <Heading size="md" fontWeight="semibold">{feature.title}</Heading>
                 </Flex>
                 <Text color="text.default">{feature.description}</Text>
@@ -170,9 +170,9 @@ function Home() {
                 animate="show"
               >
                 <Icon
-                  as={FiTrendingUp}
+                  as={FiUsers}
                   boxSize={5}
-                  color="brand.primary"
+                  color={theme.semanticTokens.button[colorMode]}
                 />
                 <Text>
                   <Text as="span" fontWeight="semibold">
@@ -181,7 +181,7 @@ function Home() {
                   {' '}
                   {activity.action}{' '}
                   <ChakraLink
-                    color={theme.semanticTokens.button[colorMode]}
+                    color={theme.semanticTokens.url[colorMode]}
                   >
                     "{activity.paper}"
                   </ChakraLink>
