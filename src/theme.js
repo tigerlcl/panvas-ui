@@ -9,8 +9,9 @@ const config = {
 // Semantic tokens - cleaned up to only used tokens
 const semanticTokens = {
   text: { light: 'gray.800', dark: 'gray.200'},
+  url: { light: 'red.500', dark: 'blue.200' },
   bg: { light: 'whiteAlpha.600', dark: 'whiteAlpha.900'},
-  button: { light: 'blue.500', dark: 'blue.200' },
+  button: { light: 'red.300', dark: 'blue.200' },
 };
 
 // Custom gradients
