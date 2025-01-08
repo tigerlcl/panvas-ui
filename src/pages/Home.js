@@ -32,8 +32,8 @@ const recentActivities = [
 const features = [
   {
     icon: FiMessageCircle,
-    title: 'Community Discussion',
-    description: 'Engage with papers through reactions, comments, and anonymous discussions. Build meaningful connections with fellow researchers.',
+    title: 'Forum Discussion',
+    description: 'Engage with trending topics through reactions, comments, and anonymous discussions. Build meaningful connections with fellow researchers.',
   },
   {
     icon: FiBook,
