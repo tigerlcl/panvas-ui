@@ -18,7 +18,7 @@ import {
 } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiBook, FiMessageCircle, FiShield, FiTrendingUp } from 'react-icons/fi';
+import { FiBook, FiMessageCircle, FiArchive, FiTrendingUp, FiGift } from 'react-icons/fi';
 
 const MotionBox = motion(Box);
 const MotionCard = motion(Card);
@@ -56,24 +56,24 @@ const recentActivities = [
 
 const features = [
   {
-    icon: FiBook,
-    title: 'Academic Papers',
-    description: 'Access and discuss the latest research papers in your field'
-  },
-  {
     icon: FiMessageCircle,
     title: 'Community Discussion',
-    description: 'Engage in meaningful discussions with fellow researchers'
+    description: 'Engage with papers through reactions, comments, and anonymous discussions. Build meaningful connections with fellow researchers.',
   },
-  {
-    icon: FiShield,
-    title: 'Content Safety',
-    description: 'Maintain high-quality academic discussions with content moderation'
+    {
+    icon: FiBook,
+    title: 'Preprint Hub',
+    description: 'Share your paper drafts for community review. Discover trending papers and stay updated with hot topics in your field.',
   },
-  {
-    icon: FiTrendingUp,
-    title: 'Research Impact',
-    description: 'Track and increase the impact of your research'
+    {
+    icon: FiArchive,
+    title: 'Help Wanted Zone',
+    description: 'Request paid review services, post questionnaires, or recruit experiment subjects. Earn PanCoins for contributing.',
+  },
+    {
+    icon: FiGift,
+    title: 'Carnival',
+    description: 'Participate in exciting mini-games like paper decision betting. Use PanCoins to join and win more rewards.',
   }
 ];
 
@@ -289,33 +289,15 @@ function Home() {
           >
             Why Choose Panvas?
           </Heading>
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={10}>
+          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={8}>
             {features.map((feature, index) => (
-              <VStack
-                key={index}
-                align="start"
-                spacing={4}
-                as={motion.div}
-                variants={item}
-                whileHover={{ y: -5 }}
-                p={6}
-                borderRadius="lg"
-                bgGradient={colorMode === 'light'
-                  ? 'linear(to-br, white, gray.50)'
-                  : 'linear(115deg, rgba(246, 65, 108, 0.1), rgba(255, 246, 183, 0.1))'}
-                shadow="lg"
-              >
-                <Icon
-                  as={feature.icon}
-                  boxSize={8}
-                  bgGradient={textGradient}
-                  bgClip="text"
-                />
-                <Heading size="md" bgGradient={textGradient} bgClip="text">
-                  {feature.title}
-                </Heading>
+              <Box key={index}>
+                <Flex align="center" mb={2}>
+                  <Icon as={feature.icon} boxSize={6} mr={2} color={colorMode === 'light'? '#f6416c': '#fff6b7'} />
+                  <Heading size="md" fontWeight="semibold" color={textColor}>{feature.title}</Heading>
+                </Flex>
                 <Text color={textColor}>{feature.description}</Text>
-              </VStack>
+              </Box>
             ))}
           </SimpleGrid>
         </MotionBox>

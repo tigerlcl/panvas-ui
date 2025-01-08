@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, Button, Heading, useColorMode, IconButton, Image, Stack, Text } from '@chakra-ui/react';
+import { Box, Flex, Button, Heading, useColorMode, Image, Stack, Text, useTheme } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SunIcon, MoonIcon } from '@chakra-ui/icons';
@@ -8,18 +8,11 @@ const MotionButton = motion(Button);
 
 function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
-
-  const navGradient = colorMode === 'light'
-    ? 'linear(to-r, #fdfcfb, #e2d1c3)'
-    : 'linear(to-r, #12063b, #09555c)';
-
-  const buttonGradient = colorMode === 'light'
-    ? 'linear(to-r, #f6416c, #ff8177)'
-    : 'linear(to-r, #f6416c, #2d3436)';
+  const theme = useTheme();
 
   return (
     <Box
-      bgGradient={navGradient}
+      bgGradient={theme.gradients.nav[colorMode]}
       px={7}
       py={5}
       position="sticky"
@@ -32,16 +25,16 @@ function Navbar() {
         >
           <Stack direction="row" align="center" display="flex" alignItems="center">
             <Image 
-            src="/panvas-logo.svg"
-            alt="Panvas" 
-            height="50px"
+              src="/panvas-logo.svg"
+              alt="Panvas" 
+              height="50px"
             />
             <Text 
-            lineHeight="50px" 
-            ml={2}
-            fontSize="3xl"
-            bgGradient={'linear(to-t, #F31C1C, #FA8AAE)'}
-            bgClip="text"
+              lineHeight="50px" 
+              ml={2}
+              fontSize="3xl"
+              bgGradient={'linear(to-t, #F31C1C, #FA8AAE)'}
+              bgClip="text"
             >Panvas</Text>
           </Stack>
         </Heading>
@@ -69,24 +62,15 @@ function Navbar() {
           <MotionButton
             as={RouterLink}
             to="/signin"
-            bgGradient={buttonGradient}
-            color="white"
-            _hover={{
-              transform: 'translateY(-2px)',
-            }}
+            variant="gradient"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             Sign In
           </MotionButton>
-          <IconButton
-            aria-label="Toggle color mode"
-            icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-            onClick={toggleColorMode}
-            variant="ghost"
-            color="white"
-            _hover={{ bg: 'whiteAlpha.200' }}
-          />
+          <Button onClick={toggleColorMode}>
+            {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+          </Button>
         </Flex>
       </Flex>
     </Box>

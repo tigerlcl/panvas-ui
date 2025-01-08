@@ -1,17 +1,15 @@
 import React from 'react';
-import { Box, Container, Stack, Text, Link, IconButton, Image, useColorMode } from '@chakra-ui/react';
+import { Box, Container, Stack, Text, Link, IconButton, Image, useColorMode, useTheme } from '@chakra-ui/react';
 import { FiGithub, FiTwitter, FiLinkedin } from 'react-icons/fi';
 
 function Footer() {
   const { colorMode } = useColorMode();
-  const bgGradient = colorMode === 'light'
-    ? 'linear(to-r, #fdfcfb, #e2d1c3)'
-    : 'linear(to-r, #12063b, #09555c)';
+  const theme = useTheme();
 
   return (
     <Box
       as="footer"
-      bgGradient={bgGradient}
+      bgGradient={theme.gradients.nav[colorMode]}
       px={7}
       py={5}
     >
@@ -31,12 +29,12 @@ function Footer() {
                 _dark={{ filter: 'brightness(0) invert(1)' }}
               />
             </Link> */}
-            <Text fontSize="md">
+            <Text fontSize="md" color="text.default">
               © {new Date().getFullYear()} Panvas. All rights reserved.
             </Text>
           </Stack>
           <Stack direction="row" spacing={3} align="center">
-            <Text fontSize="md">Follow us on:</Text>
+            <Text fontSize="md" color="text.default">Follow us on:</Text>
             <IconButton
               as={Link}
               href="https://github.com/HKUSTDial"
@@ -44,6 +42,7 @@ function Footer() {
               icon={<FiGithub />}
               size="md"
               variant="ghost"
+              color="text.default"
             />
             <IconButton
               as={Link}
@@ -52,6 +51,7 @@ function Footer() {
               icon={<FiTwitter />}
               size="md"
               variant="ghost"
+              color="text.default"
             />
             <IconButton
               as={Link}
@@ -60,6 +60,7 @@ function Footer() {
               icon={<FiLinkedin />}
               size="md"
               variant="ghost"
+              color="text.default"
             />
           </Stack>
         </Stack>

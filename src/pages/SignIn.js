@@ -15,6 +15,7 @@ import {
   Divider,
   HStack,
   useColorMode,
+  useTheme,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { FiEye, FiEyeOff, FiGithub, FiMail } from 'react-icons/fi';
@@ -26,9 +27,7 @@ function SignIn() {
   const [show, setShow] = React.useState(false);
   const handleClick = () => setShow(!show);
   const { colorMode } = useColorMode();
-  const formBg = colorMode === 'light' ? 'white' : 'brand.tertiary';
-  const headingColor = colorMode === 'light' ? 'black' : 'white';
-  const textColor = colorMode === 'light' ? 'gray.600' : 'gray.200';
+  const theme = useTheme();
 
   return (
     <Container maxW="container.sm" py={8}>
@@ -39,10 +38,10 @@ function SignIn() {
       >
         <VStack spacing={8} align="stretch">
           <VStack spacing={2} align="center">
-            <Heading size="xl" color={headingColor}>
+            <Heading size="xl" color="text.heading">
               Welcome Back
             </Heading>
-            <Text color={textColor}>
+            <Text color="text.default">
               Sign in to continue to your research journey
             </Text>
           </VStack>
@@ -50,7 +49,7 @@ function SignIn() {
           <Box
             as={motion.div}
             p={8}
-            bg={formBg}
+            bg="bg.secondary"
             borderRadius="xl"
             shadow="xl"
             whileHover={{ y: -2 }}
@@ -58,7 +57,7 @@ function SignIn() {
           >
             <VStack spacing={4}>
               <FormControl>
-                <FormLabel>Email</FormLabel>
+                <FormLabel color="text.default">Email</FormLabel>
                 <Input
                   type="email"
                   placeholder="your@email.com"
@@ -67,7 +66,7 @@ function SignIn() {
               </FormControl>
 
               <FormControl>
-                <FormLabel>Password</FormLabel>
+                <FormLabel color="text.default">Password</FormLabel>
                 <InputGroup size="lg">
                   <Input
                     type={show ? 'text' : 'password'}
@@ -78,6 +77,7 @@ function SignIn() {
                       variant="ghost"
                       onClick={handleClick}
                       icon={show ? <FiEyeOff /> : <FiEye />}
+                      color="text.default"
                     />
                   </InputRightElement>
                 </InputGroup>
@@ -90,8 +90,8 @@ function SignIn() {
                 as={motion.button}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                bg={colorMode === 'light' ? 'blue.500' : 'blue.200'}
-                color={colorMode === 'light' ? 'white' : 'gray.800'}
+                bg="button.primary"
+                color="button.text"
               >
                 Sign In
               </Button>
@@ -101,7 +101,7 @@ function SignIn() {
                   variant="link"
                   colorScheme="blue"
                   size="sm"
-                  color={colorMode === 'light' ? 'blue.500' : 'blue.200'}
+                  color="button.primary"
                 >
                   Forgot Password?
                 </Button>
@@ -109,7 +109,7 @@ function SignIn() {
                   variant="link"
                   colorScheme="blue"
                   size="sm"
-                  color={colorMode === 'light' ? 'blue.500' : 'blue.200'}
+                  color="button.primary"
                 >
                   Create Account
                 </Button>
@@ -118,7 +118,7 @@ function SignIn() {
 
             <VStack mt={8} spacing={4}>
               <Divider />
-              <Text color={textColor}>Or continue with</Text>
+              <Text color="text.default">Or continue with</Text>
 
               <HStack spacing={4} width="full">
                 <Button
@@ -128,8 +128,8 @@ function SignIn() {
                   as={motion.button}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  borderColor={colorMode === 'light' ? 'gray.300' : 'gray.600'}
-                  color={textColor}
+                  borderColor="border.secondary"
+                  color="text.default"
                 >
                   Google
                 </Button>
@@ -140,8 +140,8 @@ function SignIn() {
                   as={motion.button}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  borderColor={colorMode === 'light' ? 'gray.300' : 'gray.600'}
-                  color={textColor}
+                  borderColor="border.secondary"
+                  color="text.default"
                 >
                   GitHub
                 </Button>
@@ -154,8 +154,8 @@ function SignIn() {
                 as={motion.button}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                borderColor={colorMode === 'light' ? 'gray.300' : 'gray.600'}
-                color={textColor}
+                borderColor="border.secondary"
+                color="text.default"
               >
                 Sign in with Email
               </Button>

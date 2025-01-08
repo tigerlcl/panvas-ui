@@ -1,8 +1,7 @@
 import React from 'react';
-import { Box, Grid, GridItem } from '@chakra-ui/react';
+import { Box, Container } from '@chakra-ui/react';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
 import BrowsePapers from './pages/BrowsePapers';
 import Community from './pages/Community';
@@ -12,36 +11,27 @@ import Footer from './components/Footer';
 function App() {
   return (
     <Box minH="100vh" display="flex" flexDirection="column">
-      <Grid
-        templateAreas={{
-          base: `"nav" "main"`,
-          lg: `"nav nav" "side main"`,
-        }}
-        gridTemplateRows={{ base: 'auto 1fr', lg: 'auto 1fr' }}
-        gridTemplateColumns={{ base: '1fr', lg: '250px 1fr' }}
-        flex="1"
-        overflow="hidden"
-      >
-        <GridItem area="nav">
-          <Navbar />
-        </GridItem>
-        <GridItem area="side" display={{ base: 'none', lg: 'block' }}>
-          <Sidebar />
-        </GridItem>
-        <GridItem 
-          area="main" 
-          overflow="hidden"
-          h="100%"
-        >
+      {/* Header */}
+      <Box as="header" flexShrink={0}>
+        <Navbar />
+      </Box>
+
+      {/* Main Content */}
+      <Box as="main" flex={1} py={8}>
+        <Container maxW="container.xl">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/browse" element={<BrowsePapers />} />
             <Route path="/community" element={<Community />} />
             <Route path="/signin" element={<SignIn />} />
           </Routes>
-        </GridItem>
-      </Grid>
-      <Footer />
+        </Container>
+      </Box>
+
+      {/* Footer */}
+      <Box as="footer" flexShrink={0}>
+        <Footer />
+      </Box>
     </Box>
   );
 }
