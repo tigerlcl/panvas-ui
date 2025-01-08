@@ -24,21 +24,6 @@ import { FiBookmark, FiThumbsUp, FiMessageSquare } from 'react-icons/fi';
 const MotionBox = motion(Box);
 const MotionCard = motion(Card);
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0 }
-};
-
 const papers = [
   {
     id: 1,
@@ -68,10 +53,10 @@ function BrowsePapers() {
   const theme = useTheme();
 
   return (
-    <Box as={motion.div} initial="hidden" animate="show" variants={container}>
+    <Box as={motion.div} initial="hidden" animate="show">
       <Container maxW="container.xl">
         {/* Search and Filter Section */}
-        <MotionBox mb={8} variants={item}>
+        <MotionBox mb={8} >
           <Heading mb={6} color="text.heading">
             Browse Papers
           </Heading>
@@ -96,7 +81,6 @@ function BrowsePapers() {
           {papers.map((paper) => (
             <MotionCard
               key={paper.id}
-              variants={item}
               whileHover={{ scale: 1.02 }}
               cursor="pointer"
             >
@@ -114,8 +98,8 @@ function BrowsePapers() {
                   {paper.tags.map((tag) => (
                     <Badge 
                       key={tag} 
-                      bgGradient={theme.gradients.tag[colorMode]}
-                      color="text.inverse"
+                      bgGradient={theme.gradients.button[colorMode]}
+                      color="white"
                     >
                       {tag}
                     </Badge>

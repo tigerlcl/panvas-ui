@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Flex, Button, Heading, useColorMode, Image, Stack, Text, useTheme } from '@chakra-ui/react';
+import { Box, Flex, Button, Heading, useColorMode, Image, Stack, useTheme } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SunIcon, MoonIcon } from '@chakra-ui/icons';
@@ -13,8 +13,8 @@ function Navbar() {
   return (
     <Box
       bgGradient={theme.gradients.nav[colorMode]}
-      px={7}
-      py={5}
+      px={5}
+      py={3}
       position="sticky"
     >
       <Flex justify="space-between" align="center" maxW="container.xl" mx="auto">
@@ -26,16 +26,17 @@ function Navbar() {
           <Stack direction="row" align="center" display="flex" alignItems="center">
             <Image 
               src="/panvas-logo.svg"
-              alt="Panvas" 
-              height="50px"
+              alt="Panvas"
+              height="75px"
+              borderRadius="md"
             />
-            <Text 
-              lineHeight="50px" 
+            <Box 
+              lineHeight="75px" 
               ml={2}
               fontSize="3xl"
-              bgGradient={'linear(to-t, #F31C1C, #FA8AAE)'}
-              bgClip="text"
-            >Panvas</Text>
+              color={theme.semanticTokens.text[colorMode]}
+            >Panvas
+            </Box>
           </Stack>
         </Heading>
         <Flex gap={4}>
@@ -43,7 +44,6 @@ function Navbar() {
             as={RouterLink}
             to="/browse"
             variant="ghost"
-            _hover={{ bg: 'whiteAlpha.200' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -53,7 +53,6 @@ function Navbar() {
             as={RouterLink}
             to="/community"
             variant="ghost"
-            _hover={{ bg: 'whiteAlpha.200' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -62,15 +61,23 @@ function Navbar() {
           <MotionButton
             as={RouterLink}
             to="/signin"
-            variant="gradient"
+            color={'white'}
+            bgGradient={theme.gradients.button[colorMode]}
+            _hover={{ bgGradient: theme.gradients.button[colorMode]}}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            shadow="lg"
           >
             Sign In
           </MotionButton>
-          <Button onClick={toggleColorMode}>
+          <MotionButton 
+            onClick={toggleColorMode}
+            variant="ghost"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-          </Button>
+          </MotionButton>
         </Flex>
       </Flex>
     </Box>

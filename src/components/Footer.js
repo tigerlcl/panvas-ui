@@ -1,6 +1,8 @@
 import React from 'react';
-import { Box, Container, Stack, Text, Link, IconButton, Image, useColorMode, useTheme } from '@chakra-ui/react';
+import { Box, Container, Stack, Link, IconButton, Image, useColorMode, useTheme } from '@chakra-ui/react';
 import { FiGithub, FiTwitter, FiLinkedin } from 'react-icons/fi';
+import { LiaCopyright } from "react-icons/lia";
+
 
 function Footer() {
   const { colorMode } = useColorMode();
@@ -29,38 +31,40 @@ function Footer() {
                 _dark={{ filter: 'brightness(0) invert(1)' }}
               />
             </Link> */}
-            <Text fontSize="md" color="text.default">
-              © {new Date().getFullYear()} Panvas. All rights reserved.
-            </Text>
+            <Box fontSize="lg" 
+              fontWeight="bold"
+              color={theme.semanticTokens.text[colorMode]}
+              display="flex"
+              alignItems="center">
+              <LiaCopyright /> <Box as="span" ml={1}>{new Date().getFullYear()} Panvas. All rights reserved.</Box>
+            </Box>
           </Stack>
           <Stack direction="row" spacing={3} align="center">
-            <Text fontSize="md" color="text.default">Follow us on:</Text>
+            <Box fontSize="lg" color={theme.semanticTokens.text[colorMode]}>
+              Follow us on:</Box>
             <IconButton
               as={Link}
               href="https://github.com/HKUSTDial"
               aria-label="GitHub"
               icon={<FiGithub />}
-              size="md"
+              size="lg"
               variant="ghost"
-              color="text.default"
             />
             <IconButton
               as={Link}
               href="https://twitter.com"
               aria-label="Twitter"
               icon={<FiTwitter />}
-              size="md"
+              size="lg"
               variant="ghost"
-              color="text.default"
             />
             <IconButton
               as={Link}
               href="https://linkedin.com"
               aria-label="LinkedIn"
               icon={<FiLinkedin />}
-              size="md"
+              size="lg"
               variant="ghost"
-              color="text.default"
             />
           </Stack>
         </Stack>

@@ -94,10 +94,9 @@ function Community() {
             size="lg"
             leftIcon={<Icon as={FiMessageSquare} />}
             as={motion.button}
+            bgColor={theme.semanticTokens.button[colorMode]}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            bg="button.primary"
-            color="button.text"
           >
             Start a Discussion
           </Button>
