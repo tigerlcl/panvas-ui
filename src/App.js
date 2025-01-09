@@ -13,6 +13,7 @@ import Carnival from './pages/Carnival';
 import PaperPoint from './pages/PaperPoint';
 import Blogs from './pages/Blogs';
 import FAQs from './pages/FAQs';
+import Profile from './pages/profile/Profile';
 
 function App() {
   return (
@@ -45,6 +46,9 @@ function App() {
             
             {/* Auth */}
             <Route path="/signin" element={<SignIn />} />
+            
+            {/* Profile */}
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </Container>
       </Box>
