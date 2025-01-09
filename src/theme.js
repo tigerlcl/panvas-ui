@@ -2,8 +2,8 @@ import { extendTheme } from '@chakra-ui/react';
 
 // Color mode config
 const config = {
-  initialColorMode: 'system',
-  useSystemColorMode: true,
+  initialColorMode: 'light',
+  useSystemColorMode: false,
 };
 
 // Semantic tokens - cleaned up to only used tokens

@@ -34,7 +34,7 @@ const teamMembers = [
   {
     name: "Team Member 2",
     role: "CTO",
-    image: "https://i.pravatar.cc/400?img=7",
+    image: "https://i.pravatar.cc/400?img=56",
     bio: "Brief introduction about the team member's background and expertise.",
     links: {
       github: "https://github.com",
@@ -45,7 +45,7 @@ const teamMembers = [
   {
     name: "Team Member 3",
     role: "Lead Developer",
-    image: "https://i.pravatar.cc/400?img=8",
+    image: "https://i.pravatar.cc/400?img=7",
     bio: "Brief introduction about the team member's background and expertise.",
     links: {
       github: "https://github.com",
@@ -56,7 +56,7 @@ const teamMembers = [
   {
     name: "Team Member 4",
     role: "Product Manager",
-    image: "https://i.pravatar.cc/400?img=10",
+    image: "https://i.pravatar.cc/400?img=45",
     bio: "Brief introduction about the team member's background and expertise.",
     links: {
       github: "https://github.com",
@@ -67,7 +67,7 @@ const teamMembers = [
   {
     name: "Team Member 5",
     role: "UX Designer",
-    image: "https://i.pravatar.cc/400?img=25",
+    image: "https://i.pravatar.cc/400?img=31",
     bio: "Brief introduction about the team member's background and expertise.",
     links: {
       github: "https://github.com",

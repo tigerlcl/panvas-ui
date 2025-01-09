@@ -14,11 +14,10 @@ import {
   MenuList,
   MenuItem,
   HStack,
-  Portal,
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { SunIcon, MoonIcon, ChevronDownIcon } from '@chakra-ui/icons';
+import { SunIcon, MoonIcon, ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import SignIn from '../pages/SignIn';
 
 const MotionButton = motion(Button);
@@ -29,6 +28,22 @@ function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [serviceIsOpen, setServiceIsOpen] = useState(false);
   const [resourceIsOpen, setResourceIsOpen] = useState(false);
+
+  const menuButtonStyles = {
+    variant: "ghost",
+    fontSize: "xl",
+    fontWeight: "medium",
+    _hover: {
+      bg: 'whiteAlpha.200',
+    },
+    _focus: {
+      boxShadow: 'none',
+      bg: 'whiteAlpha.200'
+    },
+    _active: {
+      bg: 'whiteAlpha.200'
+    },
+  };
 
   return (
     <>
@@ -47,12 +62,17 @@ function Navbar() {
             size="lg"
           >
             <Stack direction="row" align="center" display="flex" alignItems="center">
-              <Image 
-                src="/panvas-logo.svg"
-                alt="Panvas"
-                height="75px"
+              <Box 
                 borderRadius="md"
-              />
+                p={2}
+              >
+                <Image 
+                  src="/panvas-logo.svg"
+                  alt="Panvas"
+                  height="50px"
+                  transition="all 0.2s ease-in-out"
+                />
+              </Box>
               <Box 
                 lineHeight="75px" 
                 ml={2}
@@ -69,12 +89,7 @@ function Navbar() {
             <Button
               as={RouterLink}
               to="/team"
-              variant="ghost"
-              fontSize="xl"
-              fontWeight="medium"
-              _hover={{
-                bg: 'whiteAlpha.200'
-              }}
+              {...menuButtonStyles}
             >
               About Us
             </Button>
@@ -87,18 +102,13 @@ function Navbar() {
               <Menu isOpen={serviceIsOpen}>
                 <MenuButton
                   as={Button}
-                  variant="ghost"
-                  rightIcon={<ChevronDownIcon />}
-                  fontSize="xl"
-                  fontWeight="medium"
-                  _hover={{
-                    bg: 'whiteAlpha.200'
-                  }}
+                  rightIcon={serviceIsOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                  {...menuButtonStyles}
                 >
                   Service
                 </MenuButton>
                 <MenuList
-                  py={0}
+                  py={2}
                   borderRadius="md"
                   shadow="lg"
                 >
@@ -126,18 +136,13 @@ function Navbar() {
               <Menu isOpen={resourceIsOpen}>
                 <MenuButton
                   as={Button}
-                  variant="ghost"
-                  rightIcon={<ChevronDownIcon />}
-                  fontSize="xl"
-                  fontWeight="medium"
-                  _hover={{
-                    bg: 'whiteAlpha.200'
-                  }}
+                  rightIcon={resourceIsOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
+                  {...menuButtonStyles}
                 >
                   Resource
                 </MenuButton>
                 <MenuList
-                  py={0}
+                  py={2}
                   borderRadius="md"
                   shadow="lg"
                 >
@@ -173,6 +178,7 @@ function Navbar() {
               variant="ghost"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              {...menuButtonStyles}
             >
               {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
             </MotionButton>

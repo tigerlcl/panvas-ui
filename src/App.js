@@ -8,13 +8,11 @@ import Community from './pages/Community';
 import SignIn from './pages/SignIn';
 import Footer from './components/Footer';
 import Team from './pages/Team';
+import HelpWanted from './pages/HelpWanted';
+import Carnival from './pages/Carnival';
 import PaperPoint from './pages/PaperPoint';
-
-// Import placeholder components for new routes
-const HelpWanted = () => <Box p={8}>Help Wanted Zone - Coming Soon</Box>;
-const Carnival = () => <Box p={8}>Carnival - Coming Soon</Box>;
-const Blogs = () => <Box p={8}>Blogs - Coming Soon</Box>;
-const FAQs = () => <Box p={8}>FAQs - Coming Soon</Box>;
+import Blogs from './pages/Blogs';
+import FAQs from './pages/FAQs';
 
 function App() {
   return (
@@ -28,18 +26,25 @@ function App() {
       <Box as="main" flex={1} py={8}>
         <Container maxW="container.xl">
           <Routes>
+            {/* Main Pages */}
             <Route path="/" element={<Home />} />
+            
+            {/* Service Section */}
             <Route path="/browse" element={<BrowsePapers />} />
             <Route path="/community" element={<Community />} />
-            <Route path="/signin" element={<SignIn />} />
-            
-            {/* New Routes */}
-            <Route path="/team" element={<Team />} />
             <Route path="/help-wanted" element={<HelpWanted />} />
             <Route path="/carnival" element={<Carnival />} />
+            
+            {/* Resource Section */}
             <Route path="/paperpoint" element={<PaperPoint />} />
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/faqs" element={<FAQs />} />
+            
+            {/* About Section */}
+            <Route path="/team" element={<Team />} />
+            
+            {/* Auth */}
+            <Route path="/signin" element={<SignIn />} />
           </Routes>
         </Container>
       </Box>

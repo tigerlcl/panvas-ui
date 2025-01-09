@@ -6,115 +6,99 @@ import {
   Text,
   SimpleGrid,
   VStack,
-  HStack,
+  Button,
   Icon,
   useColorMode,
   useTheme,
   Card,
   CardBody,
-  List,
-  ListItem,
-  ListIcon,
+  Stat,
+  StatLabel,
+  StatNumber,
+  StatHelpText,
+  Badge,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { 
-  FiAward, 
-  FiGift, 
-  FiTrendingUp, 
-  FiCheckCircle, 
-  FiMessageCircle, 
-  FiThumbsUp, 
+  FiAward,
+  FiTrendingUp,
+  FiMessageSquare,
+  FiEdit3,
+  FiThumbsUp,
+  FiGift,
+  FiStar,
   FiBookOpen,
-  FiUsers
+  FiZap,
+  FiTarget
 } from 'react-icons/fi';
-
 
 const MotionCard = motion(Card);
 
-const earnPoints = [
+// Sample data for earning points
+const earningPoints = [
   {
-    title: "Paper Reviews",
-    description: "Earn points by providing thoughtful reviews on preprints",
-    icon: FiBookOpen,
-    points: "50-200",
-    details: [
-      "Basic Review: 50 points",
-      "Detailed Review: 100 points",
-      "Expert Review: 200 points"
-    ]
+    title: 'Write Paper Reviews',
+    description: 'Earn points by providing detailed reviews on research papers',
+    points: '50-200',
+    icon: FiEdit3,
+    color: 'blue'
   },
   {
-    title: "Community Engagement",
-    description: "Participate in discussions and help fellow researchers",
-    icon: FiMessageCircle,
-    points: "10-50",
-    details: [
-      "Helpful Comment: 10 points",
-      "Question Answer: 20 points",
-      "Best Answer: 50 points"
-    ]
+    title: 'Engage in Discussions',
+    description: 'Participate in meaningful academic discussions',
+    points: '10-50',
+    icon: FiMessageSquare,
+    color: 'green'
   },
   {
-    title: "Quality Contributions",
-    description: "Get recognized for your valuable inputs",
+    title: 'Get Likes',
+    description: 'Receive likes on your contributions from other members',
+    points: '20',
     icon: FiThumbsUp,
-    points: "20-100",
-    details: [
-      "Liked Review: 20 points",
-      "Featured Comment: 50 points",
-      "Top Contributor: 100 points"
-    ]
+    color: 'purple'
   },
   {
-    title: "Collaboration",
-    description: "Work together with other researchers",
-    icon: FiUsers,
-    points: "30-150",
-    details: [
-      "Join Project: 30 points",
-      "Share Resources: 50 points",
-      "Project Completion: 150 points"
-    ]
+    title: 'Complete Projects',
+    description: 'Collaborate on research projects with other members',
+    points: '30-150',
+    icon: FiTarget,
+    color: 'orange'
   }
 ];
 
-const usePoints = [
+// Sample data for using points
+const usingPoints = [
   {
-    title: "Premium Reviews",
-    description: "Request expert reviews for your papers",
-    icon: FiAward,
-    cost: "200-500",
-    details: [
-      "Basic Review Request: 200 points",
-      "Expert Review Request: 350 points",
-      "Priority Review: 500 points"
-    ]
+    title: 'Request Expert Reviews',
+    description: 'Get detailed feedback from field experts',
+    points: '200-500',
+    icon: FiStar,
+    color: 'yellow'
   },
   {
-    title: "Carnival Games",
-    description: "Participate in paper decision betting and other games",
+    title: 'Join Carnival Games',
+    description: 'Participate in academic prediction games',
+    points: '50-200',
     icon: FiGift,
-    cost: "50-200",
-    details: [
-      "Basic Bet: 50 points",
-      "Premium Bet: 100 points",
-      "Special Event Entry: 200 points"
-    ]
+    color: 'pink'
   },
   {
-    title: "Boost Visibility",
-    description: "Promote your papers and increase exposure",
-    icon: FiTrendingUp,
-    cost: "100-300",
-    details: [
-      "Featured Paper: 100 points",
-      "Trending Section: 200 points",
-      "Newsletter Feature: 300 points"
-    ]
+    title: 'Boost Visibility',
+    description: 'Increase your paper\'s visibility in the community',
+    points: '100-300',
+    icon: FiZap,
+    color: 'cyan'
+  },
+  {
+    title: 'Premium Features',
+    description: 'Access exclusive platform features',
+    points: '150-400',
+    icon: FiBookOpen,
+    color: 'teal'
   }
 ];
 
-const FeatureCard = ({ item, type }) => {
+const FeatureCard = ({ title, description, points, icon: IconComponent, color }) => {
   const { colorMode } = useColorMode();
   const theme = useTheme();
 
@@ -127,28 +111,28 @@ const FeatureCard = ({ item, type }) => {
     >
       <CardBody>
         <VStack align="start" spacing={4}>
-          <HStack spacing={3}>
-            <Icon as={item.icon} boxSize={6} color={theme.semanticTokens.button[colorMode]} />
-            <Heading size="md" bgGradient={theme.gradients.button[colorMode]} bgClip="text">
-              {item.title}
+          <Icon 
+            as={IconComponent} 
+            boxSize={8} 
+            color={`${color}.400`}
+          />
+          <VStack align="start" spacing={2}>
+            <Heading size="md" color={theme.semanticTokens.text[colorMode]}>
+              {title}
             </Heading>
-          </HStack>
-          <Text color={theme.semanticTokens.text[colorMode]}>
-            {item.description}
-          </Text>
-          <HStack>
-            <Text fontWeight="bold" bgGradient={theme.gradients.button[colorMode]} bgClip="text">
-              {type === 'earn' ? 'Earn' : 'Cost'}: {type === 'earn' ? item.points : item.cost} points
+            <Text color={theme.semanticTokens.text[colorMode]}>
+              {description}
             </Text>
-          </HStack>
-          <List spacing={2}>
-            {item.details.map((detail, index) => (
-              <ListItem key={index} color={theme.semanticTokens.text[colorMode]}>
-                <ListIcon as={FiCheckCircle} color={theme.semanticTokens.button[colorMode]} />
-                {detail}
-              </ListItem>
-            ))}
-          </List>
+          </VStack>
+          <Badge
+            colorScheme={color}
+            px={3}
+            py={1}
+            borderRadius="full"
+            fontSize="sm"
+          >
+            {points} Points
+          </Badge>
         </VStack>
       </CardBody>
     </MotionCard>
@@ -163,12 +147,14 @@ function PaperPoint() {
     <Box as={motion.div} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <Container maxW="container.xl" py={10}>
         {/* Header Section */}
-        <VStack spacing={4} mb={12} textAlign="center">
+        <VStack spacing={6} mb={16} textAlign="center">
+          <Icon as={FiAward} boxSize={12} color={theme.semanticTokens.button[colorMode]} />
           <Heading
-            pb={5}
             size="2xl"
             bgGradient={theme.gradients.button[colorMode]}
             bgClip="text"
+            letterSpacing="tight"
+            py={2}
           >
             PaperPoint System
           </Heading>
@@ -176,33 +162,99 @@ function PaperPoint() {
             fontSize="xl"
             color={theme.semanticTokens.text[colorMode]}
             maxW="2xl"
+            px={4}
           >
-            Our innovative reward system that recognizes and incentivizes valuable academic contributions.
+            Our digital currency that rewards valuable academic contributions and unlocks premium features.
           </Text>
         </VStack>
 
-        {/* Earn Points Section */}
+        {/* Stats Overview */}
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={8} mb={16}>
+          <Stat
+            px={8}
+            py={6}
+            bg={colorMode === 'light' ? 'white' : 'gray.700'}
+            shadow="xl"
+            borderRadius="lg"
+            textAlign="center"
+          >
+            <StatLabel fontSize="lg" mb={2}>Total Points Earned</StatLabel>
+            <StatNumber fontSize="4xl" fontWeight="bold" color={theme.semanticTokens.button[colorMode]}>
+              1,234,567
+            </StatNumber>
+            <StatHelpText>
+              <Icon as={FiTrendingUp} /> By Community
+            </StatHelpText>
+          </Stat>
+          <Stat
+            px={8}
+            py={6}
+            bg={colorMode === 'light' ? 'white' : 'gray.700'}
+            shadow="xl"
+            borderRadius="lg"
+            textAlign="center"
+          >
+            <StatLabel fontSize="lg" mb={2}>Active Users</StatLabel>
+            <StatNumber fontSize="4xl" fontWeight="bold" color={theme.semanticTokens.button[colorMode]}>
+              15,432
+            </StatNumber>
+            <StatHelpText>
+              <Icon as={FiTrendingUp} /> This Month
+            </StatHelpText>
+          </Stat>
+          <Stat
+            px={8}
+            py={6}
+            bg={colorMode === 'light' ? 'white' : 'gray.700'}
+            shadow="xl"
+            borderRadius="lg"
+            textAlign="center"
+          >
+            <StatLabel fontSize="lg" mb={2}>Points Redeemed</StatLabel>
+            <StatNumber fontSize="4xl" fontWeight="bold" color={theme.semanticTokens.button[colorMode]}>
+              987,654
+            </StatNumber>
+            <StatHelpText>
+              <Icon as={FiTrendingUp} /> Total Value
+            </StatHelpText>
+          </Stat>
+        </SimpleGrid>
+
+        {/* Earning Points Section */}
         <VStack spacing={8} mb={16}>
           <Heading size="xl" color={theme.semanticTokens.text[colorMode]}>
             How to Earn Points
           </Heading>
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6} w="full">
-            {earnPoints.map((item, index) => (
-              <FeatureCard key={index} item={item} type="earn" />
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6} w="100%">
+            {earningPoints.map((item, index) => (
+              <FeatureCard key={index} {...item} />
             ))}
           </SimpleGrid>
         </VStack>
 
-        {/* Use Points Section */}
+        {/* Using Points Section */}
         <VStack spacing={8}>
           <Heading size="xl" color={theme.semanticTokens.text[colorMode]}>
-            How to Use Points
+            Ways to Use Points
           </Heading>
-          <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6} w="full">
-            {usePoints.map((item, index) => (
-              <FeatureCard key={index} item={item} type="use" />
+          <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} spacing={6} w="100%">
+            {usingPoints.map((item, index) => (
+              <FeatureCard key={index} {...item} />
             ))}
           </SimpleGrid>
+        </VStack>
+
+        {/* Call to Action */}
+        <VStack spacing={4} mt={16} textAlign="center">
+          <Button
+            size="lg"
+            colorScheme="blue"
+            bgGradient={theme.gradients.button[colorMode]}
+            _hover={{ bgGradient: theme.gradients.button[colorMode], opacity: 0.9 }}
+            leftIcon={<Icon as={FiAward} />}
+          >
+            Start Earning Points
+          </Button>
         </VStack>
       </Container>
     </Box>
