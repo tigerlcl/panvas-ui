@@ -37,7 +37,7 @@ function Footer() {
               display="flex"
               alignItems="center"
             >
-              <LiaCopyright size={{ base: 16, md: 20 }} /> 
+              <LiaCopyright /> 
               <Box as="span" ml={1}>{new Date().getFullYear()} Panvas. All rights reserved.</Box>
             </Box>
           </Stack>
