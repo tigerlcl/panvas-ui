@@ -18,17 +18,13 @@ import {
   Icon,
   Button,
   Badge,
-  Stat,
-  StatLabel,
-  StatNumber,
-  Divider,
   IconButton,
   Link,
   Tooltip,
 } from '@chakra-ui/react';
 import { 
   FiCreditCard, 
-  FiActivity, 
+  FiBox, 
   FiSettings, 
   FiBookOpen,
   FiAward,
@@ -39,10 +35,13 @@ import {
   FiMail,
   FiMapPin,
   FiClock,
+  FiEdit2,
+  FiFileText,
+  FiHelpCircle,
 } from 'react-icons/fi';
 import { FaCheckCircle } from 'react-icons/fa';
 import Wallet from './Wallet';
-import Activities from './Activities';
+import Participation from './Participation';
 import Settings from './Settings';
 import { motion } from 'framer-motion';
 
@@ -97,9 +96,21 @@ function Homepage() {
     name: "Sequoia Joyce",
     isVerified: true,
     badges: [
-      { label: "Rising Star", color: "orange" },
-      { label: "First Paper", color: "green" },
-      { label: "Active Reviewer", color: "blue" }
+      { 
+        label: "Rising Star", 
+        color: "orange",
+        description: "Top 10% new contributors"
+      },
+      { 
+        label: "First Paper", 
+        color: "green",
+        description: "Published first paper"
+      },
+      { 
+        label: "Active Reviewer", 
+        color: "blue",
+        description: "8+ quality reviews"
+      }
     ],
     affiliation: "University of California, Los Angeles",
     timezone: "UTC-8",
@@ -118,35 +129,57 @@ function Homepage() {
       reviews: 8,
       preprints: 2
     },
-    reviews: {
-      all: "75%",
-      accepted: 6,
-      rejected: 2
-    },
-    recentWorks: [
+    timeline: [
       {
-        title: "Review for NeRF++",
-        agreePercent: 88,
-        authorStatus: "accept",
-        imageSrc: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a"
+        title: "Started PhD Program",
+        time: "2 days ago",
+        type: "status",
+        content: "Excited to start my PhD journey at UCLA's Computer Science Department!",
+        icon: FiBookOpen,
+        iconBg: "blue.500"
       },
       {
-        title: "Review for CLIP-Gen",
-        agreePercent: 92,
-        authorStatus: "accept",
-        imageSrc: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564"
+        title: "Paper Review Completed",
+        time: "1 week ago",
+        type: "paper",
+        content: "Reviewed 'Advanced Techniques in Neural Rendering' - provided detailed feedback on methodology and experiments.",
+        status: "completed",
+        icon: FiFileText,
+        iconBg: "purple.500"
       },
       {
-        title: "Review for DiffusionNet",
-        agreePercent: 45,
-        authorStatus: "reject",
-        imageSrc: "https://images.unsplash.com/photo-1507413245164-6160d8298b31"
+        title: "Won Weekly Challenge",
+        time: "2 weeks ago",
+        type: "carnival",
+        content: "Achieved highest score in the Computer Vision Quiz Challenge!",
+        icon: FiAward,
+        iconBg: "green.500"
       },
       {
-        title: "Review for StyleGAN3",
-        agreePercent: 76,
-        authorStatus: "accept",
-        imageSrc: "https://images.unsplash.com/photo-1451187580459-43490279c0fa"
+        title: "Helped Debug Model",
+        time: "3 weeks ago",
+        type: "help",
+        content: "Assisted in debugging a transformer architecture implementation",
+        status: "solved",
+        icon: FiHelpCircle,
+        iconBg: "orange.500"
+      },
+      {
+        title: "Relocated",
+        time: "1 month ago",
+        type: "status",
+        content: "Moved from Berkeley to Los Angeles to join UCLA",
+        icon: FiMapPin,
+        iconBg: "red.500"
+      },
+      {
+        title: "Published First Paper",
+        time: "2 months ago",
+        type: "paper",
+        content: "My paper on 'Efficient Neural Rendering' was accepted at SIGGRAPH 2024!",
+        status: "completed",
+        icon: FiFileText,
+        iconBg: "purple.500"
       }
     ]
   };
@@ -193,19 +226,16 @@ function Homepage() {
                 </Box>
               )}
             </HStack>
-            <HStack spacing={2} flexWrap="wrap">
-              {userData.badges.map((badge, index) => (
-                <Badge
-                  key={index}
-                  colorScheme={badge.color}
-                  variant="subtle"
-                  px={2}
-                  py={1}
-                  borderRadius="full"
-                >
-                  {badge.label}
-                </Badge>
-              ))}
+            <HStack spacing={6}>
+              <HStack spacing={2}>
+                <Text fontWeight="semibold">{userData.stats.following}</Text>
+                <Text color={colorMode === 'light' ? 'gray.600' : 'gray.400'}>Following</Text>
+              </HStack>
+              <Text color={colorMode === 'light' ? 'gray.300' : 'gray.600'}>•</Text>
+              <HStack spacing={2}>
+                <Text fontWeight="semibold">{userData.stats.followers}</Text>
+                <Text color={colorMode === 'light' ? 'gray.600' : 'gray.400'}>Followers</Text>
+              </HStack>
             </HStack>
             <HStack spacing={2} align="center">
               <Icon as={FiMapPin} color={colorMode === 'light' ? 'gray.600' : 'gray.400'} />
@@ -302,7 +332,7 @@ function Homepage() {
         <TabList>
           <Tab><HStack><Icon as={FiBookOpen} /><Text>Portfolio</Text></HStack></Tab>
           <Tab><HStack><Icon as={FiCreditCard} /><Text>Wallet</Text></HStack></Tab>
-          <Tab><HStack><Icon as={FiActivity} /><Text>Activities</Text></HStack></Tab>
+          <Tab><HStack><Icon as={FiBox} /><Text>Participation</Text></HStack></Tab>
           <Tab><HStack><Icon as={FiSettings} /><Text>Settings</Text></HStack></Tab>
         </TabList>
 
@@ -320,64 +350,124 @@ function Homepage() {
                 <VStack align="stretch" spacing={4}>
                   <HStack>
                     <Icon as={FiAward} boxSize={6} color={theme.semanticTokens.button[colorMode]} />
-                    <Heading size="md">Academic Impact</Heading>
+                    <Heading size="md">Badges</Heading>
                   </HStack>
-                  <Grid 
-                    templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }} 
-                    gap={4}
-                  >
-                    <Stat>
-                      <StatLabel>Following</StatLabel>
-                      <StatNumber>{userData.stats.following}</StatNumber>
-                    </Stat>
-                    <Stat>
-                      <StatLabel>Followers</StatLabel>
-                      <StatNumber>{userData.stats.followers}</StatNumber>
-                    </Stat>
-                    <Stat>
-                      <StatLabel>Reviews</StatLabel>
-                      <StatNumber>{userData.stats.reviews}</StatNumber>
-                    </Stat>
-                    <Stat>
-                      <StatLabel>Preprints</StatLabel>
-                      <StatNumber>{userData.stats.preprints}</StatNumber>
-                    </Stat>
+                  <Grid templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(3, 1fr)" }} gap={4}>
+                    {userData.badges.map((badge, index) => (
+                      <HStack 
+                        key={index}
+                        p={3}
+                        borderWidth="1px"
+                        borderRadius="lg"
+                        spacing={3}
+                        bg={colorMode === 'light' ? 'white' : 'gray.600'}
+                      >
+                        <Icon 
+                          as={FiAward} 
+                          color={`${badge.color}.400`}
+                          boxSize={5}
+                        />
+                        <VStack spacing={0} align="start">
+                          <Text fontWeight="medium">{badge.label}</Text>
+                          <Text fontSize="xs" color={colorMode === 'light' ? 'gray.600' : 'gray.400'}>
+                            {badge.description || 'Achievement unlocked'}
+                          </Text>
+                        </VStack>
+                      </HStack>
+                    ))}
                   </Grid>
                 </VStack>
               </Box>
 
-              {/* Review Profile */}
+              {/* Recent Activities */}
               <Box
                 borderWidth="1px"
                 borderRadius="lg"
                 p={6}
                 bg={colorMode === 'light' ? 'white' : 'gray.700'}
               >
-                <VStack align="stretch" spacing={4}>
-                  <Heading size="md">Review Profile</Heading>
-                  <HStack spacing={4}>
-                    <Stat>
-                      <StatLabel>All Reviews</StatLabel>
-                      <StatNumber color="yellow.400">{userData.reviews.all}</StatNumber>
-                    </Stat>
-                    <Stat>
-                      <StatLabel>Accepted</StatLabel>
-                      <StatNumber color="green.400">{userData.reviews.accepted}</StatNumber>
-                    </Stat>
-                    <Stat>
-                      <StatLabel>Rejected</StatLabel>
-                      <StatNumber color="red.400">{userData.reviews.rejected}</StatNumber>
-                    </Stat>
+                <VStack align="stretch" spacing={6}>
+                  <HStack justify="space-between">
+                    <HStack>
+                      <Icon as={FiBox} boxSize={6} color={theme.semanticTokens.button[colorMode]} />
+                      <Heading size="md">Recent Activities</Heading>
+                    </HStack>
+                    <Button 
+                      size="sm" 
+                      leftIcon={<Icon as={FiEdit2} />}
+                      variant="outline"
+                    >
+                      Add Update
+                    </Button>
                   </HStack>
-                  <Divider />
-                  <Box>
-                    <Heading size="sm" mb={4}>Recent Reviews</Heading>
-                    <Grid templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(4, 1fr)" }} gap={4}>
-                      {userData.recentWorks.map((work, index) => (
-                        <ReviewCard key={index} {...work} />
-                      ))}
-                    </Grid>
-                  </Box>
+
+                  {/* Timeline */}
+                  <VStack align="stretch" spacing={0}>
+                    {userData.timeline && userData.timeline.map((item, index) => (
+                      <HStack 
+                        key={index} 
+                        spacing={4} 
+                        position="relative" 
+                        pb={4}
+                      >
+                        {/* Timeline line */}
+                        {index !== userData.timeline.length - 1 && (
+                          <Box
+                            position="absolute"
+                            left="16px"
+                            top="32px"
+                            bottom="-4px"
+                            width="2px"
+                            bg={colorMode === 'light' ? 'gray.100' : 'gray.600'}
+                          />
+                        )}
+                        
+                        {/* Timeline content */}
+                        <Box position="relative" zIndex={1}>
+                          <Icon 
+                            as={item.icon} 
+                            boxSize={8}
+                            p={1.5}
+                            borderRadius="full"
+                            color="white"
+                            bg={item.iconBg || theme.semanticTokens.button[colorMode]}
+                          />
+                        </Box>
+                        
+                        <VStack align="start" spacing={1} flex={1} pt={1}>
+                          <Text fontWeight="semibold" fontSize="lg">{item.title}</Text>
+                          <Box 
+                            width="full"
+                            bg="transparent"
+                          >
+                            <Text mb={item.type !== 'status' ? 2 : 0}>{item.content}</Text>
+                            {item.type === 'paper' && (
+                              <HStack spacing={2}>
+                                <Badge variant="subtle" colorScheme="purple">PAPER REVIEW</Badge>
+                                <Badge variant="subtle" colorScheme={item.status === 'completed' ? 'green' : 'yellow'}>
+                                  {item.status.toUpperCase()}
+                                </Badge>
+                              </HStack>
+                            )}
+                            {item.type === 'help' && (
+                              <HStack spacing={2}>
+                                <Badge variant="subtle" colorScheme="orange">HELP WANTED</Badge>
+                                <Badge variant="subtle" colorScheme={item.status === 'solved' ? 'green' : 'yellow'}>
+                                  {item.status.toUpperCase()}
+                                </Badge>
+                              </HStack>
+                            )}
+                            {item.type === 'carnival' && (
+                              <Badge variant="subtle" colorScheme="green">CARNIVAL ACHIEVEMENT</Badge>
+                            )}
+                            <Text fontSize="sm" color="gray.500" mt={2}>
+                              {item.time}
+                            </Text>
+                          </Box>
+                        </VStack>
+                      </HStack>
+                    ))}
+                  </VStack>
                 </VStack>
               </Box>
             </VStack>
@@ -388,7 +478,7 @@ function Homepage() {
             <Wallet />
           </TabPanel>
           <TabPanel>
-            <Activities />
+            <Participation />
           </TabPanel>
           <TabPanel>
             <Settings />
