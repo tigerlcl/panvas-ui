@@ -1,6 +1,6 @@
 {
   "name": "panvas",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": true,
   "dependencies": {
     "@chakra-ui/icons": "^2.2.4",
