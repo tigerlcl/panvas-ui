@@ -105,9 +105,6 @@ function Profile() {
     stats: {
       following: 128,
       followers: 256,
-      citations: 1024,
-      hIndex: 16,
-      paperPoints: 500,
       reviews: 32,
       preprints: 8
     },
@@ -282,18 +279,6 @@ function Profile() {
                     <Stat>
                       <StatLabel>Followers</StatLabel>
                       <StatNumber>{userData.stats.followers}</StatNumber>
-                    </Stat>
-                    <Stat>
-                      <StatLabel>Citations</StatLabel>
-                      <StatNumber>{userData.stats.citations}</StatNumber>
-                    </Stat>
-                    <Stat>
-                      <StatLabel>h-index</StatLabel>
-                      <StatNumber>{userData.stats.hIndex}</StatNumber>
-                    </Stat>
-                    <Stat>
-                      <StatLabel>PaperPoints</StatLabel>
-                      <StatNumber>{userData.stats.paperPoints}</StatNumber>
                     </Stat>
                     <Stat>
                       <StatLabel>Reviews</StatLabel>
