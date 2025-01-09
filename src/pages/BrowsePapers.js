@@ -35,6 +35,7 @@ import {
   FiDownload,
   FiEye
 } from 'react-icons/fi';
+import { Link as RouterLink } from 'react-router-dom';
 
 const MotionCard = motion(Card);
 
@@ -229,16 +230,26 @@ function BrowsePapers() {
                       <Text fontSize="sm" color={theme.semanticTokens.text[colorMode]}>{paper.saves}</Text>
                     </HStack>
                   </HStack>
-                  <Button
-                    variant="solid"
-                    colorScheme="blue"
-                    size="sm"
-                    leftIcon={<Icon as={FiDownload} />}
-                    bgGradient={theme.gradients.button[colorMode]}
-                    _hover={{ bgGradient: theme.gradients.button[colorMode], opacity: 0.9 }}
-                  >
-                    Download PDF
-                  </Button>
+                  <HStack spacing={2}>
+                    <Button
+                      variant="solid"
+                      size="sm"
+                      // bgGradient={theme.gradients.button[colorMode]}
+                      // _hover={{ bgGradient: theme.gradients.button[colorMode], opacity: 0.9 }}
+                    >
+                      <Icon as={FiDownload} />
+                      {/* Download PDF */}
+                    </Button>
+                    <Button
+                      as={RouterLink}
+                      to={`/browse/${paper.id}`}
+                      bgGradient={theme.gradients.button[colorMode]}
+                      _hover={{ bgGradient: theme.gradients.button[colorMode], opacity: 0.9 }}
+                      size="sm"
+                    >
+                      View Details
+                    </Button>
+                  </HStack>
                 </HStack>
               </CardFooter>
             </MotionCard>

@@ -14,6 +14,7 @@ import PaperPoint from './pages/PaperPoint';
 import Blogs from './pages/Blogs';
 import FAQs from './pages/FAQs';
 import Profile from './pages/profile/Profile';
+import PaperDetails from './pages/PaperDetails';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
             
             {/* Service Section */}
             <Route path="/browse" element={<BrowsePapers />} />
+            <Route path="/browse/:id" element={<PaperDetails />} />
             <Route path="/community" element={<Community />} />
             <Route path="/help-wanted" element={<HelpWanted />} />
             <Route path="/carnival" element={<Carnival />} />
