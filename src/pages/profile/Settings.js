@@ -11,9 +11,7 @@ import {
   Input,
   Switch,
   Select,
-  Divider,
   useColorMode,
-  useTheme,
   Avatar,
   IconButton,
   Tag,
@@ -26,7 +24,6 @@ import { FiEdit2, FiSave, FiPlus } from 'react-icons/fi';
 
 function Settings() {
   const { colorMode } = useColorMode();
-  const theme = useTheme();
   const [newTag, setNewTag] = useState('');
   const [tags, setTags] = useState([
     'Computer Science',
@@ -60,8 +57,8 @@ function Settings() {
             <VStack spacing={4}>
               <Avatar 
                 size="2xl" 
-                src="https://i.pravatar.cc/300?img=50" 
-                name="Dr. Smith"
+                src="https://i.pravatar.cc/300?img=23" 
+                name="Sequoia Joyce"
               />
               <Button
                 leftIcon={<FiEdit2 />}

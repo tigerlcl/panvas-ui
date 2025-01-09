@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { FiBook, FiMessageCircle, FiArchive, FiUsers, FiGift } from 'react-icons/fi';
-import SignIn from './SignIn';
+import SignIn from '../components/SignIn';
 
 const MotionBox = motion(Box);
 
