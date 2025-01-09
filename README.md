@@ -4,33 +4,55 @@ Panvas is a paper-centric platform designed to serve the academic community by p
 
 ## Overview
 
-Panvas aims to revolutionize how researchers interact with academic papers by combining traditional paper hosting with community-driven features. Our platform focuses on creating a vibrant ecosystem where research papers become the centerpiece of academic discussions.
+Panvas aims to revolutionize how researchers interact with academic papers by combining traditional paper hosting with community-driven features and reward mechanisms. Our platform focuses on creating a vibrant ecosystem where research papers become the centerpiece of academic discussions.
 
 ## Key Features
 
-### 1. Paper Discovery
-- Advanced search and filtering options
-- Topic-based browsing
-- Trending papers and popular topics
-- Personalized recommendations
+### 1. Paper Discovery & Interaction
+- Advanced search with filters for fields, publication dates, and more
+- Multi-disciplinary coverage (Neuroscience, Environmental Science, Economics, etc.)
+- Paper metrics tracking (views, likes, comments, saves)
+- PDF download capabilities
+- Detailed paper information with journal references
 
 ### 2. Community Engagement
-- Paper discussions and comments
-- Professional reviews
-- Research impact tracking
+- Paper-specific discussions
+- Topic-based conversations
+- Expert reviews and feedback
 - Academic networking
+- Real-time engagement metrics
 
-### 3. Content Safety
-- High-quality academic discussions
-- Content moderation
-- Professional community guidelines
-- Trustworthy review system
+### 3. PaperPoint System
+- Digital currency for academic contributions
+- Earn points through:
+  - Writing paper reviews (50-200 points)
+  - Engaging in discussions (10-50 points)
+  - Receiving likes (20 points)
+  - Completing projects (30-150 points)
+- Use points for:
+  - Expert review requests (200-500 points)
+  - Carnival game participation (50-200 points)
+  - Paper visibility boost (100-300 points)
+  - Premium features access (150-400 points)
 
-### 4. User Experience
+### 4. Carnival Games
+- Paper decision prediction games
+- Citation count betting
+- Review quality competitions
+- Community-driven rewards
+
+### 5. Resource Center
+- Comprehensive FAQ system
+- Regular blog updates
+- Platform guides
+- Community highlights
+
+### 6. User Experience
 - Clean, modern interface
 - Responsive design
 - Dark/light mode support
 - Smooth animations and transitions
+- Intuitive navigation with dropdown menus
 
 ## Technology Stack
 
@@ -38,6 +60,7 @@ Panvas aims to revolutionize how researchers interact with academic papers by co
 - Chakra UI
 - Framer Motion
 - React Router
+- React Icons
 
 ## Getting Started
 
@@ -48,7 +71,7 @@ git clone https://github.com/tigerlcl/panvas.git
 
 2. Install dependencies
 ```bash
-cd panvas-ui
+cd panvas
 npm install
 ```
 
@@ -58,6 +81,26 @@ npm start
 ```
 
 4. Open [http://localhost:3000](http://localhost:3000) to view it in your browser
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── Navbar.js
+│   └── Footer.js
+├── pages/
+│   ├── Home.js
+│   ├── BrowsePapers.js
+│   ├── Community.js
+│   ├── Team.js
+│   ├── PaperPoint.js
+│   ├── Carnival.js
+│   ├── Blogs.js
+│   ├── FAQs.js
+│   └── SignIn.js
+└── App.js
+```
 
 ## Contributing
 
