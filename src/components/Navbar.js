@@ -28,7 +28,7 @@ import {
 import { Link as RouterLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { SunIcon, MoonIcon, ChevronDownIcon, ChevronUpIcon, HamburgerIcon } from '@chakra-ui/icons';
-import SignIn from '../pages/SignIn';
+import SignIn from './SignIn';
 
 const MotionButton = motion(Button);
 
@@ -255,8 +255,8 @@ function Navbar() {
               <HStack spacing={2}>
                 <Avatar 
                   size="sm" 
-                  src="https://i.pravatar.cc/300?img=50" 
-                  name="Prof. Lee"
+                  src="https://i.pravatar.cc/300?img=23" 
+                  name="Sequoia Joyce"
                 />
                 <Box display={{ base: 'none', md: 'block' }}>
                   <Text 
@@ -264,7 +264,7 @@ function Navbar() {
                     fontWeight="medium"
                     color={theme.semanticTokens.text[colorMode]}
                   >
-                    Prof. Lee
+                    Sequoia Joyce
                   </Text>
                   <Text 
                     fontSize="xs" 

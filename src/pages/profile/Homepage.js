@@ -24,9 +24,9 @@ import {
   Divider,
   IconButton,
   Link,
+  Tooltip,
 } from '@chakra-ui/react';
 import { 
-  FiEdit2, 
   FiCreditCard, 
   FiActivity, 
   FiSettings, 
@@ -36,8 +36,11 @@ import {
   FiTwitter,
   FiLinkedin,
   FiGlobe,
-  FiMail
+  FiMail,
+  FiMapPin,
+  FiClock,
 } from 'react-icons/fi';
+import { FaCheckCircle } from 'react-icons/fa';
 import Wallet from './Wallet';
 import Activities from './Activities';
 import Settings from './Settings';
@@ -91,51 +94,58 @@ function Homepage() {
 
   // User data from homepage.js
   const userData = {
-    name: "Prof. Lee",
-    title: "MSRA, HKUST",
-    bio: "Research interests in Machine Learning and Computer Vision",
-    tags: ["Machine Learning", "Computer Vision", "Deep Learning"],
+    name: "Sequoia Joyce",
+    isVerified: true,
+    badges: [
+      { label: "Rising Star", color: "orange" },
+      { label: "First Paper", color: "green" },
+      { label: "Active Reviewer", color: "blue" }
+    ],
+    affiliation: "University of California, Los Angeles",
+    timezone: "UTC-8",
+    bio: "First-year PhD student focusing on computer vision",
+    tags: ["Deep Learning", "Computer Vision", "PyTorch"],
     social: {
-      website: "https://www.abc.com",
-      github: "https://github.com/abc",
-      twitter: "https://twitter.com/abc",
-      linkedin: "https://linkedin.com/in/abc",
-      email: "mailto:abc@abc.com"
+      website: "www.google.com",
+      github: "www.github.com/",
+      twitter: "www.x.com/",
+      linkedin: "www.linkedin.com/",
+      email: ""
     },
     stats: {
-      following: 128,
-      followers: 256,
-      reviews: 32,
-      preprints: 8
+      following: 45,
+      followers: 28,
+      reviews: 8,
+      preprints: 2
     },
     reviews: {
-      all: "92%",
-      accepted: 28,
-      rejected: 4
+      all: "75%",
+      accepted: 6,
+      rejected: 2
     },
     recentWorks: [
       {
-        title: "Review for AFlow",
-        agreePercent: 93,
+        title: "Review for NeRF++",
+        agreePercent: 88,
         authorStatus: "accept",
         imageSrc: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a"
       },
       {
-        title: "Review for Astar",
-        agreePercent: 79,
-        authorStatus: "reject",
+        title: "Review for CLIP-Gen",
+        agreePercent: 92,
+        authorStatus: "accept",
         imageSrc: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564"
       },
       {
-        title: "Review for MAGA",
-        agreePercent: 51,
-        authorStatus: "accept",
+        title: "Review for DiffusionNet",
+        agreePercent: 45,
+        authorStatus: "reject",
         imageSrc: "https://images.unsplash.com/photo-1507413245164-6160d8298b31"
       },
       {
-        title: "Review for NL2SQL360",
-        agreePercent: 64,
-        authorStatus: "reject",
+        title: "Review for StyleGAN3",
+        agreePercent: 76,
+        authorStatus: "accept",
         imageSrc: "https://images.unsplash.com/photo-1451187580459-43490279c0fa"
       }
     ]
@@ -155,15 +165,59 @@ function Homepage() {
           <VStack spacing={4}>
             <Avatar 
               size="2xl" 
-              src="https://i.pravatar.cc/300?img=50" 
+              src="https://i.pravatar.cc/300?img=23" 
               name={userData.name}
             />
           </VStack>
           <VStack align="start" spacing={3}>
-            <Heading size="lg">{userData.name}</Heading>
-            <Text fontSize="lg" color={colorMode === 'light' ? 'gray.600' : 'gray.400'}>
-              {userData.title}
-            </Text>
+            <HStack spacing={2} align="center">
+              <Heading size="lg">{userData.name}</Heading>
+              {userData.isVerified && (
+                <Box display="inline-block" position="relative">
+                  <Tooltip 
+                    label="Verified Account" 
+                    hasArrow 
+                    placement="right"
+                    offset={[-4, 8]}
+                  >
+                    <span>
+                      <Icon 
+                        as={FaCheckCircle} 
+                        color="yellow.400" 
+                        boxSize={6} 
+                        position="relative"
+                        top="1px"
+                      />
+                    </span>
+                  </Tooltip>
+                </Box>
+              )}
+            </HStack>
+            <HStack spacing={2} flexWrap="wrap">
+              {userData.badges.map((badge, index) => (
+                <Badge
+                  key={index}
+                  colorScheme={badge.color}
+                  variant="subtle"
+                  px={2}
+                  py={1}
+                  borderRadius="full"
+                >
+                  {badge.label}
+                </Badge>
+              ))}
+            </HStack>
+            <HStack spacing={2} align="center">
+              <Icon as={FiMapPin} color={colorMode === 'light' ? 'gray.600' : 'gray.400'} />
+              <Text fontSize="lg" color={colorMode === 'light' ? 'gray.600' : 'gray.400'}>
+                {userData.affiliation}
+              </Text>
+              <Text color={colorMode === 'light' ? 'gray.400' : 'gray.500'}>•</Text>
+              <Icon as={FiClock} color={colorMode === 'light' ? 'gray.600' : 'gray.400'} />
+              <Text fontSize="md" color={colorMode === 'light' ? 'gray.600' : 'gray.400'}>
+                {userData.timezone}
+              </Text>
+            </HStack>
             <Text>{userData.bio}</Text>
             <HStack spacing={2}>
               {userData.tags.map((tag, index) => (
