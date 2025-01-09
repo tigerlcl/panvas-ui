@@ -23,6 +23,7 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useBreakpointValue,
+  Avatar,
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -243,6 +244,37 @@ function Navbar() {
 
           {/* Right Section */}
           <HStack spacing={4}>
+            <MotionButton
+              as={RouterLink}
+              to="/profile"
+              variant="ghost"
+              _hover={{ bg: colorMode === 'light' ? 'whiteAlpha.300' : 'whiteAlpha.200' }}
+              height="40px"
+              px={2}
+            >
+              <HStack spacing={2}>
+                <Avatar 
+                  size="sm" 
+                  src="https://i.pravatar.cc/300?img=50" 
+                  name="Dr. Smith"
+                />
+                <Box display={{ base: 'none', md: 'block' }}>
+                  <Text 
+                    fontSize="sm" 
+                    fontWeight="medium"
+                    color={theme.semanticTokens.text[colorMode]}
+                  >
+                    Prof. Lee
+                  </Text>
+                  <Text 
+                    fontSize="xs" 
+                    color={colorMode === 'light' ? 'gray.600' : 'gray.400'}
+                  >
+                    Demo User
+                  </Text>
+                </Box>
+              </HStack>
+            </MotionButton>
             <MotionButton
               onClick={onSignInOpen}
               color={'white'}
