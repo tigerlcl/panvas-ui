@@ -44,112 +44,108 @@ function SignIn({ isOpen, onClose }) {
     >
       <DrawerOverlay backgroundColor="rgba(0, 0, 0, 0.4)" />
       <DrawerContent bg={colorMode === 'light' ? 'white' : 'gray.800'}>
-        <DrawerCloseButton color="text.default" />
+        <DrawerCloseButton color={theme.semanticTokens.text[colorMode]} />
         <DrawerHeader />
         <DrawerBody>
-          <Container maxW="container.sm" py={8}>
-            <MotionBox
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              boxShadow={theme.customShadow[colorMode]}
-              borderRadius="lg"
-              bg={colorMode === 'light' ? 'white' : 'gray.800'}
-            >
-              <VStack spacing={8} align="stretch">
-                <VStack spacing={2} align="center">
-                  <Heading size="xl" color="text.heading">
-                    Welcome On Board
-                  </Heading>
-                  <Text color="text.default">
-                    Sign in to kickstart your research journey
-                  </Text>
-                </VStack>
+          <Container maxW="container.sm" py={10}>
+            <VStack spacing={10} align="stretch">
+              <VStack spacing={2} align="center">
+                <Heading size="xl" bgGradient={theme.gradients.button[colorMode]} bgClip="text">
+                  Welcome On Board
+                </Heading>
+                <Text color={theme.semanticTokens.text[colorMode]}>
+                  Sign in to kickstart your research journey
+                </Text>
+              </VStack>
 
-                <Box
-                  as={motion.div}
-                  p={8}
-                  bg="bg.secondary"
-                  borderRadius="xl"
-                  shadow="xl"
-                  whileHover={{ y: -2 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <VStack spacing={4}>
-                    <FormControl>
-                      <FormLabel color="text.default">Email</FormLabel>
-                      <Input
-                        type="email"
-                        placeholder="your@email.com"
-                        size="lg"
-                      />
-                    </FormControl>
-
-                    <FormControl>
-                      <FormLabel color="text.default">Password</FormLabel>
-                      <InputGroup size="lg">
-                        <Input
-                          type={show ? 'text' : 'password'}
-                          placeholder="Enter your password"
-                        />
-                        <InputRightElement>
-                          <IconButton
-                            variant="ghost"
-                            onClick={handleClick}
-                            icon={show ? <FiEyeOff /> : <FiEye />}
-                            color="text.default"
-                          />
-                        </InputRightElement>
-                      </InputGroup>
-                    </FormControl>
-
-                    <Button 
+              <Box
+                p={8}
+                bg={colorMode === 'light' ? 'white' : 'gray.700'}
+                borderRadius="xl"
+                boxShadow="0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+                position="relative"
+                _before={{
+                  content: '""',
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  borderRadius: "xl",
+                  pointerEvents: "none"
+                }}
+              >
+                <VStack spacing={4}>
+                  <FormControl>
+                    <FormLabel color={theme.semanticTokens.text[colorMode]}>Email</FormLabel>
+                    <Input
+                      type="email"
+                      placeholder="your@email.com"
                       size="lg"
-                      width="full"
-                      as={motion.button}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      bgGradient={theme.gradients.button[colorMode]}
-                      _hover={{ bgGradient: theme.gradients.button[colorMode]}}
-                      color="white"
+                      bg={colorMode === 'light' ? 'white' : 'gray.700'}
+                    />
+                  </FormControl>
+
+                  <FormControl>
+                    <FormLabel color={theme.semanticTokens.text[colorMode]}>Password</FormLabel>
+                    <InputGroup size="lg">
+                      <Input
+                        type={show ? 'text' : 'password'}
+                        placeholder="Enter your password"
+                        bg={colorMode === 'light' ? 'white' : 'gray.700'}
+                      />
+                      <InputRightElement>
+                        <IconButton
+                          variant="ghost"
+                          onClick={handleClick}
+                          icon={show ? <FiEyeOff /> : <FiEye />}
+                          color={theme.semanticTokens.text[colorMode]}
+                        />
+                      </InputRightElement>
+                    </InputGroup>
+                  </FormControl>
+
+                  <Button 
+                    size="lg"
+                    width="full"
+                    bgGradient={theme.gradients.button[colorMode]}
+                    _hover={{ bgGradient: theme.gradients.button[colorMode], opacity: 0.9 }}
+                    color="white"
+                  >
+                    Sign In
+                  </Button>
+
+                  <HStack justify="space-between" width="full">
+                    <Button
+                      variant="link"
+                      size="sm"
+                      color={theme.semanticTokens.button[colorMode]}
                     >
-                      Sign In
+                      Forgot Password?
                     </Button>
+                    <Button
+                      variant="link"
+                      size="sm"
+                      color={theme.semanticTokens.button[colorMode]}
+                    >
+                      Create Account
+                    </Button>
+                  </HStack>
 
-                    <HStack justify="space-between" width="full">
-                      <Button
-                        variant="link"
-                        colorScheme="blue"
-                        size="sm"
-                        color="button.primary"
-                      >
-                        Forgot Password?
-                      </Button>
-                      <Button
-                        variant="link"
-                        colorScheme="blue"
-                        size="sm"
-                        color="button.primary"
-                      >
-                        Create Account
-                      </Button>
-                    </HStack>
-                  </VStack>
-
-                  <VStack mt={8} spacing={4}>
+                  <VStack spacing={4} pt={6} width="full">
                     <Divider />
-                    <Text color="text.default">Or continue with</Text>
+                    <Text color={theme.semanticTokens.text[colorMode]}>Or continue with</Text>
 
                     <HStack spacing={4} width="full">
                       <Button
                         variant="outline"
                         leftIcon={<FcGoogle />}
                         width="full"
-                        as={motion.button}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        borderColor="border.secondary"
-                        color="text.default"
+                        color={theme.semanticTokens.text[colorMode]}
+                        borderColor={colorMode === 'light' ? 'gray.200' : 'gray.600'}
+                        _hover={{
+                          bg: colorMode === 'light' ? 'gray.50' : 'gray.600'
+                        }}
                       >
                         Google
                       </Button>
@@ -157,11 +153,11 @@ function SignIn({ isOpen, onClose }) {
                         variant="outline"
                         leftIcon={<FiGithub />}
                         width="full"
-                        as={motion.button}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        borderColor="border.secondary"
-                        color="text.default"
+                        color={theme.semanticTokens.text[colorMode]}
+                        borderColor={colorMode === 'light' ? 'gray.200' : 'gray.600'}
+                        _hover={{
+                          bg: colorMode === 'light' ? 'gray.50' : 'gray.600'
+                        }}
                       >
                         GitHub
                       </Button>
@@ -171,18 +167,18 @@ function SignIn({ isOpen, onClose }) {
                       variant="outline"
                       leftIcon={<FiMail />}
                       width="full"
-                      as={motion.button}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      borderColor="border.secondary"
-                      color="text.default"
+                      color={theme.semanticTokens.text[colorMode]}
+                      borderColor={colorMode === 'light' ? 'gray.200' : 'gray.600'}
+                      _hover={{
+                        bg: colorMode === 'light' ? 'gray.50' : 'gray.600'
+                      }}
                     >
                       Sign in with Email
                     </Button>
                   </VStack>
-                </Box>
-              </VStack>
-            </MotionBox>
+                </VStack>
+              </Box>
+            </VStack>
           </Container>
         </DrawerBody>
       </DrawerContent>

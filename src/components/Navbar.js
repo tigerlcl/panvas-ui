@@ -49,8 +49,6 @@ function Navbar() {
     <>
       <Box
         bgGradient={theme.gradients.nav[colorMode]}
-        px={5}
-        py={3}
         position="sticky"
         top={0}
         zIndex={1000}
@@ -69,13 +67,10 @@ function Navbar() {
                 <Image 
                   src="/panvas-logo.svg"
                   alt="Panvas"
-                  height="50px"
-                  transition="all 0.2s ease-in-out"
+                  height="75px"
                 />
               </Box>
               <Box 
-                lineHeight="75px" 
-                ml={2}
                 fontSize="3xl"
                 color={theme.semanticTokens.text[colorMode]}
               >Panvas
@@ -85,15 +80,6 @@ function Navbar() {
           
           {/* Navigation Section */}
           <HStack spacing={8} flex={1} justify="center">
-            {/* About Us - Direct Link */}
-            <Button
-              as={RouterLink}
-              to="/team"
-              {...menuButtonStyles}
-            >
-              About Us
-            </Button>
-
             {/* Service */}
             <Box 
               onMouseEnter={() => setServiceIsOpen(true)}
@@ -158,6 +144,15 @@ function Navbar() {
                 </MenuList>
               </Menu>
             </Box>
+
+             {/* About Us - Direct Link */}
+             <Button
+              as={RouterLink}
+              to="/team"
+              {...menuButtonStyles}
+            >
+              About Us
+            </Button>
           </HStack>
 
           {/* Right Section */}
