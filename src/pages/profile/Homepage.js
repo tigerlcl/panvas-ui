@@ -85,7 +85,7 @@ const ReviewCard = ({ title, agreePercent, authorStatus, imageSrc }) => {
   );
 };
 
-function Profile() {
+function Homepage() {
   const { colorMode } = useColorMode();
   const theme = useTheme();
 
@@ -345,4 +345,4 @@ function Profile() {
   );
 }
 
-export default Profile; 
+export default Homepage; 

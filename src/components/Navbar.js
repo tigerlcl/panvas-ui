@@ -112,7 +112,7 @@ function Navbar() {
                 fontSize="md"
                 color={theme.semanticTokens.text[colorMode]}
               >
-                Service
+                Solutions
               </Text>
               <VStack spacing={2} pl={4}>
                 <MobileNavItem to="/community" onClose={onMenuClose}>Forum Discussion</MobileNavItem>
@@ -129,7 +129,7 @@ function Navbar() {
                 fontSize="md"
                 color={theme.semanticTokens.text[colorMode]}
               >
-                Resource
+                Resources
               </Text>
               <VStack spacing={2} pl={4}>
                 <MobileNavItem to="/paperpoint" onClose={onMenuClose}>PaperPoint</MobileNavItem>
@@ -189,7 +189,7 @@ function Navbar() {
                 About Us
               </Button>
 
-              {/* Service */}
+              {/* Solutions */}
               <Box 
                 onMouseEnter={() => setServiceIsOpen(true)}
                 onMouseLeave={() => setServiceIsOpen(false)}
@@ -200,7 +200,7 @@ function Navbar() {
                     rightIcon={serviceIsOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
                     {...menuButtonStyles}
                   >
-                    Service
+                    Solutions
                   </MenuButton>
                   <MenuList
                     py={2}
@@ -215,7 +215,7 @@ function Navbar() {
                 </Menu>
               </Box>
 
-              {/* Resource */}
+              {/* Resources */}
               <Box 
                 onMouseEnter={() => setResourceIsOpen(true)}
                 onMouseLeave={() => setResourceIsOpen(false)}
@@ -226,7 +226,7 @@ function Navbar() {
                     rightIcon={resourceIsOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
                     {...menuButtonStyles}
                   >
-                    Resource
+                    Resources
                   </MenuButton>
                   <MenuList
                     py={2}
@@ -246,7 +246,7 @@ function Navbar() {
           <HStack spacing={4}>
             <MotionButton
               as={RouterLink}
-              to="/profile"
+              to="/homepage"
               variant="ghost"
               _hover={{ bg: colorMode === 'light' ? 'whiteAlpha.300' : 'whiteAlpha.200' }}
               height="40px"
@@ -256,7 +256,7 @@ function Navbar() {
                 <Avatar 
                   size="sm" 
                   src="https://i.pravatar.cc/300?img=50" 
-                  name="Dr. Smith"
+                  name="Prof. Lee"
                 />
                 <Box display={{ base: 'none', md: 'block' }}>
                   <Text 

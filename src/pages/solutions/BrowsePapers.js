@@ -243,6 +243,7 @@ function BrowsePapers() {
                     <Button
                       as={RouterLink}
                       to={`/browse/${paper.id}`}
+                      color={'white'}
                       bgGradient={theme.gradients.button[colorMode]}
                       _hover={{ bgGradient: theme.gradients.button[colorMode], opacity: 0.9 }}
                       size="sm"
