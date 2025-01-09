@@ -49,37 +49,48 @@ function Navbar() {
     <>
       <Box
         bgGradient={theme.gradients.nav[colorMode]}
+        px={5}
+        py={3}
         position="sticky"
         top={0}
         zIndex={1000}
       >
         <Flex justify="space-between" align="center" maxW="container.xl" mx="auto">
-          <Heading
-            as={RouterLink}
-            to="/"
-            size="lg"
-          >
-            <Stack direction="row" align="center" display="flex" alignItems="center">
-              <Box 
-                borderRadius="md"
-                p={2}
-              >
-                <Image 
-                  src="/panvas-logo.svg"
-                  alt="Panvas"
-                  height="75px"
-                />
-              </Box>
-              <Box 
-                fontSize="3xl"
-                color={theme.semanticTokens.text[colorMode]}
-              >Panvas
-              </Box>
-            </Stack>
-          </Heading>
+          <HStack as={RouterLink} to="/" spacing={3}>
+            <Box 
+              bg={colorMode === 'dark' ? 'gray.800' : 'transparent'}
+              borderRadius="md"
+              p={2}
+              display="flex"
+              alignItems="center"
+            >
+              <Image 
+                src="/panvas-logo.svg"
+                alt="Panvas"
+                height="40px"
+                width="40px"
+              />
+            </Box>
+            <Heading
+              fontSize="2xl"
+              color={theme.semanticTokens.text[colorMode]}
+              fontWeight="bold"
+            >
+              Panvas
+            </Heading>
+          </HStack>
           
           {/* Navigation Section */}
           <HStack spacing={8} flex={1} justify="center">
+            {/* About Us - Direct Link */}
+            <Button
+              as={RouterLink}
+              to="/team"
+              {...menuButtonStyles}
+            >
+              About Us
+            </Button>
+
             {/* Service */}
             <Box 
               onMouseEnter={() => setServiceIsOpen(true)}
@@ -144,15 +155,6 @@ function Navbar() {
                 </MenuList>
               </Menu>
             </Box>
-
-             {/* About Us - Direct Link */}
-             <Button
-              as={RouterLink}
-              to="/team"
-              {...menuButtonStyles}
-            >
-              About Us
-            </Button>
           </HStack>
 
           {/* Right Section */}
@@ -161,7 +163,7 @@ function Navbar() {
               onClick={onOpen}
               color={'white'}
               bgGradient={theme.gradients.button[colorMode]}
-              _hover={{ bgGradient: theme.gradients.button[colorMode]}}
+              _hover={{ bgGradient: theme.gradients.button[colorMode], opacity: 0.9 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               shadow="lg"

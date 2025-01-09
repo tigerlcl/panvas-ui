@@ -27,7 +27,6 @@ import { motion } from 'framer-motion';
 import { FiEye, FiEyeOff, FiGithub, FiMail } from 'react-icons/fi';
 import { FcGoogle } from 'react-icons/fc';
 
-const MotionBox = motion(Box);
 
 function SignIn({ isOpen, onClose }) {
   const [show, setShow] = React.useState(false);
