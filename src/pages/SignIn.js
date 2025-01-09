@@ -23,7 +23,6 @@ import {
   DrawerContent,
   DrawerCloseButton
 } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
 import { FiEye, FiEyeOff, FiGithub, FiMail } from 'react-icons/fi';
 import { FcGoogle } from 'react-icons/fc';
 
