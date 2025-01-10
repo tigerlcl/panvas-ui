@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Stack, Link, IconButton, Image, useColorMode, useTheme, HStack } from '@chakra-ui/react';
+import { Box, Container, Stack, Link, IconButton, useColorMode, useTheme, HStack } from '@chakra-ui/react';
 import { FiGithub, FiTwitter, FiLinkedin } from 'react-icons/fi';
 import { LiaCopyright } from "react-icons/lia";
 
