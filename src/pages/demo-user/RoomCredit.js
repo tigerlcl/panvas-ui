@@ -119,8 +119,7 @@ const TaskEngagementCard = ({ title, stats, recentTasks }) => {
   );
 };
 
-function Participation() {
-  const { colorMode } = useColorMode();
+function RoomCredit() {
 
   // Sample data for helper activities
   const helperData = {
@@ -207,4 +206,4 @@ function Participation() {
   );
 }
 
-export default Participation; 
+export default RoomCredit; 

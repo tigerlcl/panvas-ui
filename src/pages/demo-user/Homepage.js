@@ -41,51 +41,11 @@ import {
 } from 'react-icons/fi';
 import { FaCheckCircle } from 'react-icons/fa';
 import Wallet from './Wallet';
-import Participation from './Participation';
+import RoomCredit from './RoomCredit';
 import Settings from './Settings';
 import { motion } from 'framer-motion';
 
 const MotionButton = motion(Button);
-
-// Review Card Component from homepage.js
-const ReviewCard = ({ title, agreePercent, authorStatus, imageSrc }) => {
-  const { colorMode } = useColorMode();
-  
-  return (
-    <Box
-      borderWidth="1px"
-      borderRadius="lg"
-      overflow="hidden"
-      bg={colorMode === 'light' ? 'white' : 'gray.700'}
-      position="relative"
-    >
-      <Box
-        bgImage={`linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url(${imageSrc})`}
-        bgSize="cover"
-        bgPosition="center"
-        h="150px"
-        p={4}
-        color="white"
-      >
-        <VStack align="flex-start" h="full" justify="flex-end">
-          <Heading size="md">{title}</Heading>
-          <HStack>
-            <Text fontSize="lg" fontWeight="bold">{agreePercent}%</Text>
-            <Text>agree</Text>
-          </HStack>
-          <HStack>
-            <Text>author</Text>
-            <Badge
-              colorScheme={authorStatus === 'accept' ? 'green' : 'red'}
-            >
-              {authorStatus}
-            </Badge>
-          </HStack>
-        </VStack>
-      </Box>
-    </Box>
-  );
-};
 
 function Homepage() {
   const { colorMode } = useColorMode();
@@ -332,7 +292,7 @@ function Homepage() {
         <TabList>
           <Tab><HStack><Icon as={FiBookOpen} /><Text>Portfolio</Text></HStack></Tab>
           <Tab><HStack><Icon as={FiCreditCard} /><Text>Wallet</Text></HStack></Tab>
-          <Tab><HStack><Icon as={FiBox} /><Text>Participation</Text></HStack></Tab>
+          <Tab><HStack><Icon as={FiBox} /><Text>Room Credit</Text></HStack></Tab>
           <Tab><HStack><Icon as={FiSettings} /><Text>Settings</Text></HStack></Tab>
         </TabList>
 
@@ -478,7 +438,7 @@ function Homepage() {
             <Wallet />
           </TabPanel>
           <TabPanel>
-            <Participation />
+            <RoomCredit />
           </TabPanel>
           <TabPanel>
             <Settings />

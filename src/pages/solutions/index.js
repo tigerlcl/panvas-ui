@@ -1,5 +1,5 @@
-export { default as Community } from './Community';
-export { default as BrowsePapers } from './BrowsePapers';
-export { default as HelpWanted } from './HelpWanted';
+export { default as Square } from './Square';
+export { default as PreviewSpace } from './PreviewSpace';
+export { default as ConsultingRoom } from './ConsultingRoom';
 export { default as Carnival } from './Carnival'; 
-export { default as PaperDetails } from './PaperDetails';
+
