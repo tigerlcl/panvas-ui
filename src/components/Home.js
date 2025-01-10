@@ -15,8 +15,8 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { FiBook, FiMessageCircle, FiArchive, FiUsers, FiGift } from 'react-icons/fi';
-import SignIn from '../components/SignIn';
+import { FiArchive, FiUsers, FiGift, FiLayout } from 'react-icons/fi';
+import SignIn from './SignIn';
 
 const MotionBox = motion(Box);
 
@@ -31,24 +31,24 @@ const recentActivities = [
 
 const features = [
   {
-    icon: FiMessageCircle,
-    title: 'Forum Discussion',
-    description: 'Engage with trending topics through reactions, comments, and anonymous discussions. Build meaningful connections with fellow researchers.',
-  },
-  {
-    icon: FiBook,
-    title: 'Preprint Hub',
-    description: 'Share your paper drafts for community review. Discover trending papers and stay updated with hot topics in your field.',
+    icon: FiLayout,
+    title: 'Square',
+    description: 'Join academic discussions, share insights, and engage with the research community. Build your reputation through meaningful contributions.',
   },
   {
     icon: FiArchive,
-    title: 'Help Wanted Zone',
-    description: 'Request paid review services, post questionnaires, or recruit experiment subjects. Earn PaperPoint for contributing.',
+    title: 'Preview Space',
+    description: 'Explore multi-modal research content. Get early feedback on your papers, code, datasets, and research materials.',
+  },
+  {
+    icon: FiUsers,
+    title: 'Consulting Room',
+    description: 'Find verified opportunities to help, earn rewards, and build credibility through responsible contributions.',
   },
   {
     icon: FiGift,
     title: 'Carnival',
-    description: 'Participate in exciting mini-games like paper decision betting. Use PaperPoint to join and win more rewards.',
+    description: 'Make predictions, place bets, and win rewards while engaging with academic research in a fun way!',
   }
 ];
 

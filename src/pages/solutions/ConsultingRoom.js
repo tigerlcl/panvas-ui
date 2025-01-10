@@ -247,7 +247,7 @@ function ConsultingRoom() {
               />
               <VStack align="start" spacing={0}>
                 <Heading size="lg">Consulting Room</Heading>
-                <Text color="gray.500">Find opportunities to help and earn rewards</Text>
+                <Text color="gray.500">Find verified opportunities to help, earn rewards, and build credibility through responsible contributions</Text>
               </VStack>
             </HStack>
             <InputGroup maxW="400px">

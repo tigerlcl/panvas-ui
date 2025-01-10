@@ -1,12 +1,8 @@
 import React from 'react';
 import { Box, Container } from '@chakra-ui/react';
 import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import SignIn from './components/SignIn';
-import Footer from './components/Footer';
-import AboutUs from './pages/AboutUs';
-import Homepage from './pages/profile/Homepage';
+import { Home, Navbar, Footer, SignIn, AboutUs } from './components';
+import { Homepage, RoomCredit, Settings, Wallet } from './pages/demo-user';
 import { PaperPoint, Blogs, FAQs } from './pages/resources';
 import { Square, PreviewSpace, ConsultingRoom, Carnival } from './pages/solutions';
 import { SpacePaper } from './pages/examples';
@@ -44,7 +40,10 @@ function App() {
             <Route path="/signin" element={<SignIn />} />
             
             {/* Demo User */}
-            <Route path="/homepage" element={<Homepage />} />
+            <Route path="/demo-user/homepage" element={<Homepage />} />
+            <Route path="/demo-user/room-credit" element={<RoomCredit />} />
+            <Route path="/demo-user/settings" element={<Settings />} />
+            <Route path="/demo-user/wallet" element={<Wallet />} />
 
             {/* Examples */}
             <Route path="/space/paper/:id" element={<SpacePaper />} />

@@ -201,7 +201,7 @@ function Navbar() {
           <HStack spacing={4}>
             <MotionButton
               as={RouterLink}
-              to="/homepage"
+              to="/demo-user/homepage"
               variant="ghost"
               _hover={{ bg: colorMode === 'light' ? 'whiteAlpha.300' : 'whiteAlpha.200' }}
               height="40px"
