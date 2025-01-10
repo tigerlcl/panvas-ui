@@ -8,46 +8,30 @@ Panvas aims to revolutionize how researchers interact with academic papers by co
 
 ## Key Features
 
-### 1. Paper Discovery & Interaction
-- Advanced search with filters for fields, publication dates, and more
-- Multi-disciplinary coverage (Neuroscience, Environmental Science, Economics, etc.)
-- Paper metrics tracking (views, likes, comments, saves)
-- PDF download capabilities
-- Detailed paper information with journal references
+### 1. Solutions
+- **Square**: Academic discussions and community engagement platform
+- **Preview Space**: Multi-modal research content exploration
+  - Papers, Research Proposals, Code Snippets
+  - Datasets, Research Images, and more
+  - Time-limited review spaces
+  - Voting system for feedback
+- **Consulting Room**: Verified opportunities for collaboration
+  - Paper Review Requests
+  - Research Surveys
+  - Experiment Participation
+  - Other Academic Services
+- **Carnival**: Research-based prediction games
+  - Paper Decision Betting
+  - Citation Count Predictions
+  - Review Quality Competitions
+  - Community-driven rewards
 
-### 2. Community Engagement
-- Paper-specific discussions
-- Topic-based conversations
-- Expert reviews and feedback
-- Academic networking
-- Real-time engagement metrics
+### 2. Resources
+- **PaperPoint System**: Digital currency for academic contributions
+- **Blogs**: Platform updates and academic insights
+- **FAQs**: Comprehensive help center
 
-### 3. PaperPoint System
-- Digital currency for academic contributions
-- Earn points through:
-  - Writing paper reviews (50-200 points)
-  - Engaging in discussions (10-50 points)
-  - Receiving likes (20 points)
-  - Completing projects (30-150 points)
-- Use points for:
-  - Expert review requests (200-500 points)
-  - Carnival game participation (50-200 points)
-  - Paper visibility boost (100-300 points)
-  - Premium features access (150-400 points)
-
-### 4. Carnival Games
-- Paper decision prediction games
-- Citation count betting
-- Review quality competitions
-- Community-driven rewards
-
-### 5. Resource Center
-- Comprehensive FAQ system
-- Regular blog updates
-- Platform guides
-- Community highlights
-
-### 6. User Experience
+### 3. User Experience
 - Clean, modern interface
 - Responsive design
 - Dark/light mode support
@@ -56,11 +40,45 @@ Panvas aims to revolutionize how researchers interact with academic papers by co
 
 ## Technology Stack
 
-- React
-- Chakra UI
+- React 18
+- Chakra UI 2.x
 - Framer Motion
-- React Router
+- React Router 6
 - React Icons
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── index.js
+│   ├── Navbar.js
+│   ├── Footer.js
+│   ├── SignIn.js
+│   ├── Home.js
+│   └── AboutUs.js
+├── pages/
+│   ├── demo-user/
+│   │   ├── index.js
+│   │   ├── Homepage.js
+│   │   ├── RoomCredit.js
+│   │   ├── Settings.js
+│   │   └── Wallet.js
+│   ├── solutions/
+│   │   ├── index.js
+│   │   ├── Square.js
+│   │   ├── PreviewSpace.js
+│   │   ├── ConsultingRoom.js
+│   │   └── Carnival.js
+│   ├── resources/
+│   │   ├── index.js
+│   │   ├── PaperPoint.js
+│   │   ├── Blogs.js
+│   │   └── FAQs.js
+│   └── examples/
+│       └── SpacePaper.js
+└── App.js
+```
 
 ## Getting Started
 
@@ -81,26 +99,6 @@ npm start
 ```
 
 4. Open [http://localhost:3000](http://localhost:3000) to view it in your browser
-
-## Project Structure
-
-```
-src/
-├── components/
-│   ├── Navbar.js
-│   └── Footer.js
-├── pages/
-│   ├── Home.js
-│   ├── BrowsePapers.js
-│   ├── Community.js
-│   ├── Team.js
-│   ├── PaperPoint.js
-│   ├── Carnival.js
-│   ├── Blogs.js
-│   ├── FAQs.js
-│   └── SignIn.js
-└── App.js
-```
 
 ## Contributing
 
